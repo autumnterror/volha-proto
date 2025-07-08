@@ -70,12 +70,17 @@ func (x *ProductList) GetProducts() []*Product {
 type Product struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=Id,proto3" json:"Id,omitempty"`
-	Sizes         string                 `protobuf:"bytes,2,opt,name=Sizes,proto3" json:"Sizes,omitempty"`
-	Materials     string                 `protobuf:"bytes,3,opt,name=Materials,proto3" json:"Materials,omitempty"`
-	Color         string                 `protobuf:"bytes,4,opt,name=Color,proto3" json:"Color,omitempty"`
-	Photos        []string               `protobuf:"bytes,5,rep,name=Photos,proto3" json:"Photos,omitempty"`
-	Seems         []string               `protobuf:"bytes,6,rep,name=Seems,proto3" json:"Seems,omitempty"`
-	Price         int32                  `protobuf:"varint,7,opt,name=Price,proto3" json:"Price,omitempty"`
+	Brand         string                 `protobuf:"bytes,2,opt,name=Brand,proto3" json:"Brand,omitempty"`
+	Country       string                 `protobuf:"bytes,3,opt,name=Country,proto3" json:"Country,omitempty"`
+	Width         int32                  `protobuf:"varint,4,opt,name=Width,proto3" json:"Width,omitempty"`
+	Height        int32                  `protobuf:"varint,5,opt,name=Height,proto3" json:"Height,omitempty"`
+	Depth         int32                  `protobuf:"varint,6,opt,name=Depth,proto3" json:"Depth,omitempty"`
+	Materials     []string               `protobuf:"bytes,7,rep,name=Materials,proto3" json:"Materials,omitempty"`
+	Color         []string               `protobuf:"bytes,8,rep,name=Color,proto3" json:"Color,omitempty"`
+	Photos        []string               `protobuf:"bytes,9,rep,name=Photos,proto3" json:"Photos,omitempty"`
+	Seems         []string               `protobuf:"bytes,10,rep,name=Seems,proto3" json:"Seems,omitempty"`
+	Price         int32                  `protobuf:"varint,11,opt,name=Price,proto3" json:"Price,omitempty"`
+	Description   string                 `protobuf:"bytes,12,opt,name=Description,proto3" json:"Description,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -117,25 +122,53 @@ func (x *Product) GetId() string {
 	return ""
 }
 
-func (x *Product) GetSizes() string {
+func (x *Product) GetBrand() string {
 	if x != nil {
-		return x.Sizes
+		return x.Brand
 	}
 	return ""
 }
 
-func (x *Product) GetMaterials() string {
+func (x *Product) GetCountry() string {
+	if x != nil {
+		return x.Country
+	}
+	return ""
+}
+
+func (x *Product) GetWidth() int32 {
+	if x != nil {
+		return x.Width
+	}
+	return 0
+}
+
+func (x *Product) GetHeight() int32 {
+	if x != nil {
+		return x.Height
+	}
+	return 0
+}
+
+func (x *Product) GetDepth() int32 {
+	if x != nil {
+		return x.Depth
+	}
+	return 0
+}
+
+func (x *Product) GetMaterials() []string {
 	if x != nil {
 		return x.Materials
 	}
-	return ""
+	return nil
 }
 
-func (x *Product) GetColor() string {
+func (x *Product) GetColor() []string {
 	if x != nil {
 		return x.Color
 	}
-	return ""
+	return nil
 }
 
 func (x *Product) GetPhotos() []string {
@@ -157,6 +190,13 @@ func (x *Product) GetPrice() int32 {
 		return x.Price
 	}
 	return 0
+}
+
+func (x *Product) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
 }
 
 type Id struct {
@@ -209,15 +249,21 @@ const file_products_products_proto_rawDesc = "" +
 	"\n" +
 	"\x17products/products.proto\x12\bproducts\x1a\x1bgoogle/protobuf/empty.proto\"<\n" +
 	"\vProductList\x12-\n" +
-	"\bproducts\x18\x01 \x03(\v2\x11.products.ProductR\bproducts\"\xa7\x01\n" +
+	"\bproducts\x18\x01 \x03(\v2\x11.products.ProductR\bproducts\"\xa7\x02\n" +
 	"\aProduct\x12\x0e\n" +
 	"\x02Id\x18\x01 \x01(\tR\x02Id\x12\x14\n" +
-	"\x05Sizes\x18\x02 \x01(\tR\x05Sizes\x12\x1c\n" +
-	"\tMaterials\x18\x03 \x01(\tR\tMaterials\x12\x14\n" +
-	"\x05Color\x18\x04 \x01(\tR\x05Color\x12\x16\n" +
-	"\x06Photos\x18\x05 \x03(\tR\x06Photos\x12\x14\n" +
-	"\x05Seems\x18\x06 \x03(\tR\x05Seems\x12\x14\n" +
-	"\x05Price\x18\a \x01(\x05R\x05Price\"\x14\n" +
+	"\x05Brand\x18\x02 \x01(\tR\x05Brand\x12\x18\n" +
+	"\aCountry\x18\x03 \x01(\tR\aCountry\x12\x14\n" +
+	"\x05Width\x18\x04 \x01(\x05R\x05Width\x12\x16\n" +
+	"\x06Height\x18\x05 \x01(\x05R\x06Height\x12\x14\n" +
+	"\x05Depth\x18\x06 \x01(\x05R\x05Depth\x12\x1c\n" +
+	"\tMaterials\x18\a \x03(\tR\tMaterials\x12\x14\n" +
+	"\x05Color\x18\b \x03(\tR\x05Color\x12\x16\n" +
+	"\x06Photos\x18\t \x03(\tR\x06Photos\x12\x14\n" +
+	"\x05Seems\x18\n" +
+	" \x03(\tR\x05Seems\x12\x14\n" +
+	"\x05Price\x18\v \x01(\x05R\x05Price\x12 \n" +
+	"\vDescription\x18\f \x01(\tR\vDescription\"\x14\n" +
 	"\x02Id\x12\x0e\n" +
 	"\x02Id\x18\x01 \x01(\tR\x02Id2\xdd\x01\n" +
 	"\bProducts\x123\n" +
