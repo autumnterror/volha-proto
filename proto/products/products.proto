@@ -11,7 +11,7 @@ service Products {
 
   rpc GetAll(google.protobuf.Empty) returns (ProductList);
 }
-
+//rr
 message ProductList {
   repeated Product products = 1;
 }
