@@ -1,0 +1,31 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package products;
+
+option go_package = "github.com/autumnterror/tb-proto;productsRPC";
+
+service Products {
+  rpc Create(Product) returns (google.protobuf.Empty);
+  rpc Update(Product) returns (google.protobuf.Empty);
+  rpc Delete(Id) returns (google.protobuf.Empty);
+
+  rpc GetAll(google.protobuf.Empty) returns (ProductList);
+}
+
+message ProductList {
+  repeated Product products = 1;
+}
+
+message Product {
+  string Id = 1;
+  string Sizes = 2;
+  string Materials = 3;
+  string Color = 4;
+  repeated string Photos = 5;
+  repeated string Seems  = 6;
+  int32 Price = 7;
+}
+
+message Id {
+  string Id = 1;
+}
