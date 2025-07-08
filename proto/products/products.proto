@@ -2,7 +2,7 @@ syntax = "proto3";
 import "google/protobuf/empty.proto";
 package products;
 
-option go_package = "github.com/autumnterror/tb-proto;productsRPC";
+option go_package = "github.com/autumnterror/volha-proto;productsRPC";
 
 service Products {
   rpc Create(Product) returns (google.protobuf.Empty);

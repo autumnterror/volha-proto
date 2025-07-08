@@ -223,7 +223,7 @@ const file_products_products_proto_rawDesc = "" +
 	"\x06Create\x12\x11.products.Product\x1a\x16.google.protobuf.Empty\x123\n" +
 	"\x06Update\x12\x11.products.Product\x1a\x16.google.protobuf.Empty\x12.\n" +
 	"\x06Delete\x12\f.products.Id\x1a\x16.google.protobuf.Empty\x127\n" +
-	"\x06GetAll\x12\x16.google.protobuf.Empty\x1a\x15.products.ProductListB.Z,github.com/autumnterror/tb-proto;productsRPCb\x06proto3"
+	"\x06GetAll\x12\x16.google.protobuf.Empty\x1a\x15.products.ProductListB1Z/github.com/autumnterror/volha-proto;productsRPCb\x06proto3"
 
 var (
 	file_products_products_proto_rawDescOnce sync.Once
