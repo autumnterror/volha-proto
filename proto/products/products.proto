@@ -10,8 +10,9 @@ service Products {
   rpc Delete(Id) returns (google.protobuf.Empty);
 
   rpc GetAll(google.protobuf.Empty) returns (ProductList);
+  rpc FilterProducts(ProductFilter) returns (ProductList);
 }
-//rr
+
 message ProductList {
   repeated Product products = 1;
 }
@@ -36,4 +37,23 @@ message Product {
 
 message Id {
   string Id = 1;
+}
+
+message ProductFilter {
+  repeated string Brand = 1;
+  repeated string Country = 2;
+  int32 MinWidth = 3;
+  int32 MaxWidth = 4;
+  int32 MinHeight = 5;
+  int32 MaxHeight = 6;
+  int32 MinDepth = 7;
+  int32 MaxDepth = 8;
+  repeated string Materials = 9;
+  repeated string Colors = 10;
+  int32 MinPrice = 11;
+  int32 MaxPrice = 12;
+  string SortBy = 13;
+  string SortOrder = 14;
+  int32 Offset = 15;
+  int32 Limit = 16;
 }

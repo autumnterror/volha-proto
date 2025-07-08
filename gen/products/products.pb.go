@@ -22,7 +22,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// rr
 type ProductList struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Products      []*Product             `protobuf:"bytes,1,rep,name=products,proto3" json:"products,omitempty"`
@@ -243,6 +242,170 @@ func (x *Id) GetId() string {
 	return ""
 }
 
+type ProductFilter struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Brand         []string               `protobuf:"bytes,1,rep,name=Brand,proto3" json:"Brand,omitempty"`
+	Country       []string               `protobuf:"bytes,2,rep,name=Country,proto3" json:"Country,omitempty"`
+	MinWidth      int32                  `protobuf:"varint,3,opt,name=MinWidth,proto3" json:"MinWidth,omitempty"`
+	MaxWidth      int32                  `protobuf:"varint,4,opt,name=MaxWidth,proto3" json:"MaxWidth,omitempty"`
+	MinHeight     int32                  `protobuf:"varint,5,opt,name=MinHeight,proto3" json:"MinHeight,omitempty"`
+	MaxHeight     int32                  `protobuf:"varint,6,opt,name=MaxHeight,proto3" json:"MaxHeight,omitempty"`
+	MinDepth      int32                  `protobuf:"varint,7,opt,name=MinDepth,proto3" json:"MinDepth,omitempty"`
+	MaxDepth      int32                  `protobuf:"varint,8,opt,name=MaxDepth,proto3" json:"MaxDepth,omitempty"`
+	Materials     []string               `protobuf:"bytes,9,rep,name=Materials,proto3" json:"Materials,omitempty"`
+	Colors        []string               `protobuf:"bytes,10,rep,name=Colors,proto3" json:"Colors,omitempty"`
+	MinPrice      int32                  `protobuf:"varint,11,opt,name=MinPrice,proto3" json:"MinPrice,omitempty"`
+	MaxPrice      int32                  `protobuf:"varint,12,opt,name=MaxPrice,proto3" json:"MaxPrice,omitempty"`
+	SortBy        string                 `protobuf:"bytes,13,opt,name=SortBy,proto3" json:"SortBy,omitempty"`
+	SortOrder     string                 `protobuf:"bytes,14,opt,name=SortOrder,proto3" json:"SortOrder,omitempty"`
+	Offset        int32                  `protobuf:"varint,15,opt,name=Offset,proto3" json:"Offset,omitempty"`
+	Limit         int32                  `protobuf:"varint,16,opt,name=Limit,proto3" json:"Limit,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProductFilter) Reset() {
+	*x = ProductFilter{}
+	mi := &file_products_products_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProductFilter) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProductFilter) ProtoMessage() {}
+
+func (x *ProductFilter) ProtoReflect() protoreflect.Message {
+	mi := &file_products_products_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProductFilter.ProtoReflect.Descriptor instead.
+func (*ProductFilter) Descriptor() ([]byte, []int) {
+	return file_products_products_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *ProductFilter) GetBrand() []string {
+	if x != nil {
+		return x.Brand
+	}
+	return nil
+}
+
+func (x *ProductFilter) GetCountry() []string {
+	if x != nil {
+		return x.Country
+	}
+	return nil
+}
+
+func (x *ProductFilter) GetMinWidth() int32 {
+	if x != nil {
+		return x.MinWidth
+	}
+	return 0
+}
+
+func (x *ProductFilter) GetMaxWidth() int32 {
+	if x != nil {
+		return x.MaxWidth
+	}
+	return 0
+}
+
+func (x *ProductFilter) GetMinHeight() int32 {
+	if x != nil {
+		return x.MinHeight
+	}
+	return 0
+}
+
+func (x *ProductFilter) GetMaxHeight() int32 {
+	if x != nil {
+		return x.MaxHeight
+	}
+	return 0
+}
+
+func (x *ProductFilter) GetMinDepth() int32 {
+	if x != nil {
+		return x.MinDepth
+	}
+	return 0
+}
+
+func (x *ProductFilter) GetMaxDepth() int32 {
+	if x != nil {
+		return x.MaxDepth
+	}
+	return 0
+}
+
+func (x *ProductFilter) GetMaterials() []string {
+	if x != nil {
+		return x.Materials
+	}
+	return nil
+}
+
+func (x *ProductFilter) GetColors() []string {
+	if x != nil {
+		return x.Colors
+	}
+	return nil
+}
+
+func (x *ProductFilter) GetMinPrice() int32 {
+	if x != nil {
+		return x.MinPrice
+	}
+	return 0
+}
+
+func (x *ProductFilter) GetMaxPrice() int32 {
+	if x != nil {
+		return x.MaxPrice
+	}
+	return 0
+}
+
+func (x *ProductFilter) GetSortBy() string {
+	if x != nil {
+		return x.SortBy
+	}
+	return ""
+}
+
+func (x *ProductFilter) GetSortOrder() string {
+	if x != nil {
+		return x.SortOrder
+	}
+	return ""
+}
+
+func (x *ProductFilter) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+func (x *ProductFilter) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
 var File_products_products_proto protoreflect.FileDescriptor
 
 const file_products_products_proto_rawDesc = "" +
@@ -265,12 +428,31 @@ const file_products_products_proto_rawDesc = "" +
 	"\x05Price\x18\v \x01(\x05R\x05Price\x12 \n" +
 	"\vDescription\x18\f \x01(\tR\vDescription\"\x14\n" +
 	"\x02Id\x12\x0e\n" +
-	"\x02Id\x18\x01 \x01(\tR\x02Id2\xdd\x01\n" +
+	"\x02Id\x18\x01 \x01(\tR\x02Id\"\xbd\x03\n" +
+	"\rProductFilter\x12\x14\n" +
+	"\x05Brand\x18\x01 \x03(\tR\x05Brand\x12\x18\n" +
+	"\aCountry\x18\x02 \x03(\tR\aCountry\x12\x1a\n" +
+	"\bMinWidth\x18\x03 \x01(\x05R\bMinWidth\x12\x1a\n" +
+	"\bMaxWidth\x18\x04 \x01(\x05R\bMaxWidth\x12\x1c\n" +
+	"\tMinHeight\x18\x05 \x01(\x05R\tMinHeight\x12\x1c\n" +
+	"\tMaxHeight\x18\x06 \x01(\x05R\tMaxHeight\x12\x1a\n" +
+	"\bMinDepth\x18\a \x01(\x05R\bMinDepth\x12\x1a\n" +
+	"\bMaxDepth\x18\b \x01(\x05R\bMaxDepth\x12\x1c\n" +
+	"\tMaterials\x18\t \x03(\tR\tMaterials\x12\x16\n" +
+	"\x06Colors\x18\n" +
+	" \x03(\tR\x06Colors\x12\x1a\n" +
+	"\bMinPrice\x18\v \x01(\x05R\bMinPrice\x12\x1a\n" +
+	"\bMaxPrice\x18\f \x01(\x05R\bMaxPrice\x12\x16\n" +
+	"\x06SortBy\x18\r \x01(\tR\x06SortBy\x12\x1c\n" +
+	"\tSortOrder\x18\x0e \x01(\tR\tSortOrder\x12\x16\n" +
+	"\x06Offset\x18\x0f \x01(\x05R\x06Offset\x12\x14\n" +
+	"\x05Limit\x18\x10 \x01(\x05R\x05Limit2\x9f\x02\n" +
 	"\bProducts\x123\n" +
 	"\x06Create\x12\x11.products.Product\x1a\x16.google.protobuf.Empty\x123\n" +
 	"\x06Update\x12\x11.products.Product\x1a\x16.google.protobuf.Empty\x12.\n" +
 	"\x06Delete\x12\f.products.Id\x1a\x16.google.protobuf.Empty\x127\n" +
-	"\x06GetAll\x12\x16.google.protobuf.Empty\x1a\x15.products.ProductListB1Z/github.com/autumnterror/volha-proto;productsRPCb\x06proto3"
+	"\x06GetAll\x12\x16.google.protobuf.Empty\x1a\x15.products.ProductList\x12@\n" +
+	"\x0eFilterProducts\x12\x17.products.ProductFilter\x1a\x15.products.ProductListB1Z/github.com/autumnterror/volha-proto;productsRPCb\x06proto3"
 
 var (
 	file_products_products_proto_rawDescOnce sync.Once
@@ -284,25 +466,28 @@ func file_products_products_proto_rawDescGZIP() []byte {
 	return file_products_products_proto_rawDescData
 }
 
-var file_products_products_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_products_products_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_products_products_proto_goTypes = []any{
 	(*ProductList)(nil),   // 0: products.ProductList
 	(*Product)(nil),       // 1: products.Product
 	(*Id)(nil),            // 2: products.Id
-	(*emptypb.Empty)(nil), // 3: google.protobuf.Empty
+	(*ProductFilter)(nil), // 3: products.ProductFilter
+	(*emptypb.Empty)(nil), // 4: google.protobuf.Empty
 }
 var file_products_products_proto_depIdxs = []int32{
 	1, // 0: products.ProductList.products:type_name -> products.Product
 	1, // 1: products.Products.Create:input_type -> products.Product
 	1, // 2: products.Products.Update:input_type -> products.Product
 	2, // 3: products.Products.Delete:input_type -> products.Id
-	3, // 4: products.Products.GetAll:input_type -> google.protobuf.Empty
-	3, // 5: products.Products.Create:output_type -> google.protobuf.Empty
-	3, // 6: products.Products.Update:output_type -> google.protobuf.Empty
-	3, // 7: products.Products.Delete:output_type -> google.protobuf.Empty
-	0, // 8: products.Products.GetAll:output_type -> products.ProductList
-	5, // [5:9] is the sub-list for method output_type
-	1, // [1:5] is the sub-list for method input_type
+	4, // 4: products.Products.GetAll:input_type -> google.protobuf.Empty
+	3, // 5: products.Products.FilterProducts:input_type -> products.ProductFilter
+	4, // 6: products.Products.Create:output_type -> google.protobuf.Empty
+	4, // 7: products.Products.Update:output_type -> google.protobuf.Empty
+	4, // 8: products.Products.Delete:output_type -> google.protobuf.Empty
+	0, // 9: products.Products.GetAll:output_type -> products.ProductList
+	0, // 10: products.Products.FilterProducts:output_type -> products.ProductList
+	6, // [6:11] is the sub-list for method output_type
+	1, // [1:6] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name
@@ -319,7 +504,7 @@ func file_products_products_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_products_products_proto_rawDesc), len(file_products_products_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

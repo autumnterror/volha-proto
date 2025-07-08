@@ -20,10 +20,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Products_Create_FullMethodName = "/products.Products/Create"
-	Products_Update_FullMethodName = "/products.Products/Update"
-	Products_Delete_FullMethodName = "/products.Products/Delete"
-	Products_GetAll_FullMethodName = "/products.Products/GetAll"
+	Products_Create_FullMethodName         = "/products.Products/Create"
+	Products_Update_FullMethodName         = "/products.Products/Update"
+	Products_Delete_FullMethodName         = "/products.Products/Delete"
+	Products_GetAll_FullMethodName         = "/products.Products/GetAll"
+	Products_FilterProducts_FullMethodName = "/products.Products/FilterProducts"
 )
 
 // ProductsClient is the client API for Products service.
@@ -34,6 +35,7 @@ type ProductsClient interface {
 	Update(ctx context.Context, in *Product, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Delete(ctx context.Context, in *Id, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetAll(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ProductList, error)
+	FilterProducts(ctx context.Context, in *ProductFilter, opts ...grpc.CallOption) (*ProductList, error)
 }
 
 type productsClient struct {
@@ -84,6 +86,16 @@ func (c *productsClient) GetAll(ctx context.Context, in *emptypb.Empty, opts ...
 	return out, nil
 }
 
+func (c *productsClient) FilterProducts(ctx context.Context, in *ProductFilter, opts ...grpc.CallOption) (*ProductList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProductList)
+	err := c.cc.Invoke(ctx, Products_FilterProducts_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProductsServer is the server API for Products service.
 // All implementations must embed UnimplementedProductsServer
 // for forward compatibility.
@@ -92,6 +104,7 @@ type ProductsServer interface {
 	Update(context.Context, *Product) (*emptypb.Empty, error)
 	Delete(context.Context, *Id) (*emptypb.Empty, error)
 	GetAll(context.Context, *emptypb.Empty) (*ProductList, error)
+	FilterProducts(context.Context, *ProductFilter) (*ProductList, error)
 	mustEmbedUnimplementedProductsServer()
 }
 
@@ -113,6 +126,9 @@ func (UnimplementedProductsServer) Delete(context.Context, *Id) (*emptypb.Empty,
 }
 func (UnimplementedProductsServer) GetAll(context.Context, *emptypb.Empty) (*ProductList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAll not implemented")
+}
+func (UnimplementedProductsServer) FilterProducts(context.Context, *ProductFilter) (*ProductList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FilterProducts not implemented")
 }
 func (UnimplementedProductsServer) mustEmbedUnimplementedProductsServer() {}
 func (UnimplementedProductsServer) testEmbeddedByValue()                  {}
@@ -207,6 +223,24 @@ func _Products_GetAll_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Products_FilterProducts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductFilter)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).FilterProducts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_FilterProducts_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).FilterProducts(ctx, req.(*ProductFilter))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Products_ServiceDesc is the grpc.ServiceDesc for Products service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -229,6 +263,10 @@ var Products_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetAll",
 			Handler:    _Products_GetAll_Handler,
+		},
+		{
+			MethodName: "FilterProducts",
+			Handler:    _Products_FilterProducts_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
