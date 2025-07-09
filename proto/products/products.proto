@@ -20,19 +20,21 @@ message ProductList {
 message Product {
   string Id = 1;
 
-  string Brand = 2;
-  string Country = 3;
-  int32 Width = 4;
-  int32 Height = 5;
-  int32 Depth = 6;
+  string Title = 3;
+  string Article = 4;
+  string Brand = 5;
+  string Country = 6;
+  int32 Width = 7;
+  int32 Height = 8;
+  int32 Depth = 9;
 
-  repeated string Materials = 7;
-  repeated string Color = 8;
-  repeated string Photos = 9;
-  repeated string Seems  = 10;
+  repeated string Materials = 10;
+  repeated string Color = 11;
+  repeated string Photos = 12;
+  repeated string Seems  = 13;
 
-  int32 Price = 11;
-  string Description = 12;
+  int32 Price = 14;
+  string Description = 15;
 }
 
 message Id {
