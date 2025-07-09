@@ -276,6 +276,7 @@ type ProductFilter struct {
 	SortOrder     string                 `protobuf:"bytes,14,opt,name=SortOrder,proto3" json:"SortOrder,omitempty"`
 	Offset        int32                  `protobuf:"varint,15,opt,name=Offset,proto3" json:"Offset,omitempty"`
 	Limit         int32                  `protobuf:"varint,16,opt,name=Limit,proto3" json:"Limit,omitempty"`
+	Title         []string               `protobuf:"bytes,17,rep,name=Title,proto3" json:"Title,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -422,6 +423,13 @@ func (x *ProductFilter) GetLimit() int32 {
 	return 0
 }
 
+func (x *ProductFilter) GetTitle() []string {
+	if x != nil {
+		return x.Title
+	}
+	return nil
+}
+
 var File_products_products_proto protoreflect.FileDescriptor
 
 const file_products_products_proto_rawDesc = "" +
@@ -446,7 +454,7 @@ const file_products_products_proto_rawDesc = "" +
 	"\x05Price\x18\x0e \x01(\x05R\x05Price\x12 \n" +
 	"\vDescription\x18\x0f \x01(\tR\vDescription\"\x14\n" +
 	"\x02Id\x12\x0e\n" +
-	"\x02Id\x18\x01 \x01(\tR\x02Id\"\xbd\x03\n" +
+	"\x02Id\x18\x01 \x01(\tR\x02Id\"\xd3\x03\n" +
 	"\rProductFilter\x12\x14\n" +
 	"\x05Brand\x18\x01 \x03(\tR\x05Brand\x12\x18\n" +
 	"\aCountry\x18\x02 \x03(\tR\aCountry\x12\x1a\n" +
@@ -464,7 +472,8 @@ const file_products_products_proto_rawDesc = "" +
 	"\x06SortBy\x18\r \x01(\tR\x06SortBy\x12\x1c\n" +
 	"\tSortOrder\x18\x0e \x01(\tR\tSortOrder\x12\x16\n" +
 	"\x06Offset\x18\x0f \x01(\x05R\x06Offset\x12\x14\n" +
-	"\x05Limit\x18\x10 \x01(\x05R\x05Limit2\x9f\x02\n" +
+	"\x05Limit\x18\x10 \x01(\x05R\x05Limit\x12\x14\n" +
+	"\x05Title\x18\x11 \x03(\tR\x05Title2\x9f\x02\n" +
 	"\bProducts\x123\n" +
 	"\x06Create\x12\x11.products.Product\x1a\x16.google.protobuf.Empty\x123\n" +
 	"\x06Update\x12\x11.products.Product\x1a\x16.google.protobuf.Empty\x12.\n" +

@@ -58,4 +58,5 @@ message ProductFilter {
   string SortOrder = 14;
   int32 Offset = 15;
   int32 Limit = 16;
+  repeated string Title = 17;
 }
