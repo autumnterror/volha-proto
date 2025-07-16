@@ -1,61 +1,155 @@
 syntax = "proto3";
-import "google/protobuf/empty.proto";
+
 package products;
 
 option go_package = "github.com/autumnterror/volha-proto;productsRPC";
 
-service Products {
-  rpc Create(Product) returns (google.protobuf.Empty);
-  rpc Update(Product) returns (google.protobuf.Empty);
-  rpc Delete(Id) returns (google.protobuf.Empty);
+import "google/protobuf/empty.proto";
 
-  rpc GetAll(google.protobuf.Empty) returns (ProductList);
+// ─────────────────────────────────────────────
+// Main service definition
+// ─────────────────────────────────────────────
+service Products {
+  // Products
+  rpc CreateProduct(Product) returns (google.protobuf.Empty);
+  rpc UpdateProduct(Product) returns (google.protobuf.Empty);
+  rpc DeleteProduct(Id) returns (google.protobuf.Empty);
+  rpc GetAllProducts(google.protobuf.Empty) returns (ProductList);
   rpc FilterProducts(ProductFilter) returns (ProductList);
+
+  // Brands
+  rpc CreateBrand(Brand) returns (google.protobuf.Empty);
+  rpc UpdateBrand(Brand) returns (google.protobuf.Empty);
+  rpc DeleteBrand(Id) returns (google.protobuf.Empty);
+  rpc GetAllBrands(google.protobuf.Empty) returns (BrandList);
+
+  // Categories
+  rpc CreateCategory(Category) returns (google.protobuf.Empty);
+  rpc UpdateCategory(Category) returns (google.protobuf.Empty);
+  rpc DeleteCategory(Id) returns (google.protobuf.Empty);
+  rpc GetAllCategories(google.protobuf.Empty) returns (CategoryList);
+
+  // Countries
+  rpc CreateCountry(Country) returns (google.protobuf.Empty);
+  rpc UpdateCountry(Country) returns (google.protobuf.Empty);
+  rpc DeleteCountry(Id) returns (google.protobuf.Empty);
+  rpc GetAllCountries(google.protobuf.Empty) returns (CountryList);
+
+  // Materials
+  rpc CreateMaterial(Material) returns (google.protobuf.Empty);
+  rpc UpdateMaterial(Material) returns (google.protobuf.Empty);
+  rpc DeleteMaterial(Id) returns (google.protobuf.Empty);
+  rpc GetAllMaterials(google.protobuf.Empty) returns (MaterialList);
+
+  // Colors
+  rpc CreateColor(Color) returns (google.protobuf.Empty);
+  rpc UpdateColor(Color) returns (google.protobuf.Empty);
+  rpc DeleteColor(Id) returns (google.protobuf.Empty);
+  rpc GetAllColors(google.protobuf.Empty) returns (ColorList);
+}
+
+// ─────────────────────────────────────────────
+// Products
+// ─────────────────────────────────────────────
+
+message Product {
+  string Id = 1;
+  string Title = 2;
+  string Article = 3;
+  string Brand = 4;
+  string Category = 5;
+  string Country = 6;
+  int32 Width = 7;
+  int32 Height = 8;
+  int32 Depth = 9;
+  repeated string Materials = 10;
+  repeated string Colors = 11;
+  repeated string Photos = 12;
+  repeated string Seems = 13;
+  int32 Price = 14;
+  string Description = 15;
 }
 
 message ProductList {
   repeated Product products = 1;
 }
 
-message Product {
-  string Id = 1;
-
-  string Title = 3;
-  string Article = 4;
-  string Brand = 5;
-  string Country = 6;
-  int32 Width = 7;
-  int32 Height = 8;
-  int32 Depth = 9;
-
+message ProductFilter {
+  repeated string Brand = 1;
+  repeated string Country = 2;
+  repeated string Category = 3;
+  int32 MinWidth = 4;
+  int32 MaxWidth = 5;
+  int32 MinHeight = 6;
+  int32 MaxHeight = 7;
+  int32 MinDepth = 8;
+  int32 MaxDepth = 9;
   repeated string Materials = 10;
-  repeated string Color = 11;
-  repeated string Photos = 12;
-  repeated string Seems  = 13;
-
-  int32 Price = 14;
-  string Description = 15;
+  repeated string Colors = 11;
+  int32 MinPrice = 12;
+  int32 MaxPrice = 13;
+  string SortBy = 14;
+  string SortOrder = 15;
+  int32 Offset = 16;
+  int32 Limit = 17;
 }
+
+// ─────────────────────────────────────────────
+// Common
+// ─────────────────────────────────────────────
 
 message Id {
   string Id = 1;
 }
 
-message ProductFilter {
-  repeated string Brand = 1;
-  repeated string Country = 2;
-  int32 MinWidth = 3;
-  int32 MaxWidth = 4;
-  int32 MinHeight = 5;
-  int32 MaxHeight = 6;
-  int32 MinDepth = 7;
-  int32 MaxDepth = 8;
-  repeated string Materials = 9;
-  repeated string Colors = 10;
-  int32 MinPrice = 11;
-  int32 MaxPrice = 12;
-  string SortBy = 13;
-  string SortOrder = 14;
-  int32 Offset = 15;
-  int32 Limit = 16;
+// ─────────────────────────────────────────────
+// Reference tables
+// ─────────────────────────────────────────────
+
+message Brand {
+  string Id = 1;
+  string Name = 2;
+}
+
+message BrandList {
+  repeated Brand brands = 1;
+}
+
+message Category {
+  string Id = 1;
+  string Title = 2;
+  string Uri = 3;
+}
+
+message CategoryList {
+  repeated Category categories = 1;
+}
+
+message Country {
+  string Id = 1;
+  string Title = 2;
+  string Friendly = 3;
+}
+
+message CountryList {
+  repeated Country countries = 1;
+}
+
+message Material {
+  string Id = 1;
+  string Title = 2;
+}
+
+message MaterialList {
+  repeated Material materials = 1;
+}
+
+message Color {
+  string Id = 1;
+  string Name = 2;
+  string Hex = 3;
+}
+
+message ColorList {
+  repeated Color colors = 1;
 }

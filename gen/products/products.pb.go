@@ -22,62 +22,19 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type ProductList struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Products      []*Product             `protobuf:"bytes,1,rep,name=products,proto3" json:"products,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ProductList) Reset() {
-	*x = ProductList{}
-	mi := &file_products_products_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ProductList) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ProductList) ProtoMessage() {}
-
-func (x *ProductList) ProtoReflect() protoreflect.Message {
-	mi := &file_products_products_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ProductList.ProtoReflect.Descriptor instead.
-func (*ProductList) Descriptor() ([]byte, []int) {
-	return file_products_products_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *ProductList) GetProducts() []*Product {
-	if x != nil {
-		return x.Products
-	}
-	return nil
-}
-
 type Product struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=Id,proto3" json:"Id,omitempty"`
-	Title         string                 `protobuf:"bytes,3,opt,name=Title,proto3" json:"Title,omitempty"`
-	Article       string                 `protobuf:"bytes,4,opt,name=Article,proto3" json:"Article,omitempty"`
-	Brand         string                 `protobuf:"bytes,5,opt,name=Brand,proto3" json:"Brand,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=Title,proto3" json:"Title,omitempty"`
+	Article       string                 `protobuf:"bytes,3,opt,name=Article,proto3" json:"Article,omitempty"`
+	Brand         string                 `protobuf:"bytes,4,opt,name=Brand,proto3" json:"Brand,omitempty"`
+	Category      string                 `protobuf:"bytes,5,opt,name=Category,proto3" json:"Category,omitempty"`
 	Country       string                 `protobuf:"bytes,6,opt,name=Country,proto3" json:"Country,omitempty"`
 	Width         int32                  `protobuf:"varint,7,opt,name=Width,proto3" json:"Width,omitempty"`
 	Height        int32                  `protobuf:"varint,8,opt,name=Height,proto3" json:"Height,omitempty"`
 	Depth         int32                  `protobuf:"varint,9,opt,name=Depth,proto3" json:"Depth,omitempty"`
 	Materials     []string               `protobuf:"bytes,10,rep,name=Materials,proto3" json:"Materials,omitempty"`
-	Color         []string               `protobuf:"bytes,11,rep,name=Color,proto3" json:"Color,omitempty"`
+	Colors        []string               `protobuf:"bytes,11,rep,name=Colors,proto3" json:"Colors,omitempty"`
 	Photos        []string               `protobuf:"bytes,12,rep,name=Photos,proto3" json:"Photos,omitempty"`
 	Seems         []string               `protobuf:"bytes,13,rep,name=Seems,proto3" json:"Seems,omitempty"`
 	Price         int32                  `protobuf:"varint,14,opt,name=Price,proto3" json:"Price,omitempty"`
@@ -88,7 +45,7 @@ type Product struct {
 
 func (x *Product) Reset() {
 	*x = Product{}
-	mi := &file_products_products_proto_msgTypes[1]
+	mi := &file_products_products_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -100,7 +57,7 @@ func (x *Product) String() string {
 func (*Product) ProtoMessage() {}
 
 func (x *Product) ProtoReflect() protoreflect.Message {
-	mi := &file_products_products_proto_msgTypes[1]
+	mi := &file_products_products_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -113,7 +70,7 @@ func (x *Product) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Product.ProtoReflect.Descriptor instead.
 func (*Product) Descriptor() ([]byte, []int) {
-	return file_products_products_proto_rawDescGZIP(), []int{1}
+	return file_products_products_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Product) GetId() string {
@@ -140,6 +97,13 @@ func (x *Product) GetArticle() string {
 func (x *Product) GetBrand() string {
 	if x != nil {
 		return x.Brand
+	}
+	return ""
+}
+
+func (x *Product) GetCategory() string {
+	if x != nil {
+		return x.Category
 	}
 	return ""
 }
@@ -179,9 +143,9 @@ func (x *Product) GetMaterials() []string {
 	return nil
 }
 
-func (x *Product) GetColor() []string {
+func (x *Product) GetColors() []string {
 	if x != nil {
-		return x.Color
+		return x.Colors
 	}
 	return nil
 }
@@ -214,28 +178,28 @@ func (x *Product) GetDescription() string {
 	return ""
 }
 
-type Id struct {
+type ProductList struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=Id,proto3" json:"Id,omitempty"`
+	Products      []*Product             `protobuf:"bytes,1,rep,name=products,proto3" json:"products,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Id) Reset() {
-	*x = Id{}
-	mi := &file_products_products_proto_msgTypes[2]
+func (x *ProductList) Reset() {
+	*x = ProductList{}
+	mi := &file_products_products_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Id) String() string {
+func (x *ProductList) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Id) ProtoMessage() {}
+func (*ProductList) ProtoMessage() {}
 
-func (x *Id) ProtoReflect() protoreflect.Message {
-	mi := &file_products_products_proto_msgTypes[2]
+func (x *ProductList) ProtoReflect() protoreflect.Message {
+	mi := &file_products_products_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -246,43 +210,44 @@ func (x *Id) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Id.ProtoReflect.Descriptor instead.
-func (*Id) Descriptor() ([]byte, []int) {
-	return file_products_products_proto_rawDescGZIP(), []int{2}
+// Deprecated: Use ProductList.ProtoReflect.Descriptor instead.
+func (*ProductList) Descriptor() ([]byte, []int) {
+	return file_products_products_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *Id) GetId() string {
+func (x *ProductList) GetProducts() []*Product {
 	if x != nil {
-		return x.Id
+		return x.Products
 	}
-	return ""
+	return nil
 }
 
 type ProductFilter struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Brand         []string               `protobuf:"bytes,1,rep,name=Brand,proto3" json:"Brand,omitempty"`
 	Country       []string               `protobuf:"bytes,2,rep,name=Country,proto3" json:"Country,omitempty"`
-	MinWidth      int32                  `protobuf:"varint,3,opt,name=MinWidth,proto3" json:"MinWidth,omitempty"`
-	MaxWidth      int32                  `protobuf:"varint,4,opt,name=MaxWidth,proto3" json:"MaxWidth,omitempty"`
-	MinHeight     int32                  `protobuf:"varint,5,opt,name=MinHeight,proto3" json:"MinHeight,omitempty"`
-	MaxHeight     int32                  `protobuf:"varint,6,opt,name=MaxHeight,proto3" json:"MaxHeight,omitempty"`
-	MinDepth      int32                  `protobuf:"varint,7,opt,name=MinDepth,proto3" json:"MinDepth,omitempty"`
-	MaxDepth      int32                  `protobuf:"varint,8,opt,name=MaxDepth,proto3" json:"MaxDepth,omitempty"`
-	Materials     []string               `protobuf:"bytes,9,rep,name=Materials,proto3" json:"Materials,omitempty"`
-	Colors        []string               `protobuf:"bytes,10,rep,name=Colors,proto3" json:"Colors,omitempty"`
-	MinPrice      int32                  `protobuf:"varint,11,opt,name=MinPrice,proto3" json:"MinPrice,omitempty"`
-	MaxPrice      int32                  `protobuf:"varint,12,opt,name=MaxPrice,proto3" json:"MaxPrice,omitempty"`
-	SortBy        string                 `protobuf:"bytes,13,opt,name=SortBy,proto3" json:"SortBy,omitempty"`
-	SortOrder     string                 `protobuf:"bytes,14,opt,name=SortOrder,proto3" json:"SortOrder,omitempty"`
-	Offset        int32                  `protobuf:"varint,15,opt,name=Offset,proto3" json:"Offset,omitempty"`
-	Limit         int32                  `protobuf:"varint,16,opt,name=Limit,proto3" json:"Limit,omitempty"`
+	Category      []string               `protobuf:"bytes,3,rep,name=Category,proto3" json:"Category,omitempty"`
+	MinWidth      int32                  `protobuf:"varint,4,opt,name=MinWidth,proto3" json:"MinWidth,omitempty"`
+	MaxWidth      int32                  `protobuf:"varint,5,opt,name=MaxWidth,proto3" json:"MaxWidth,omitempty"`
+	MinHeight     int32                  `protobuf:"varint,6,opt,name=MinHeight,proto3" json:"MinHeight,omitempty"`
+	MaxHeight     int32                  `protobuf:"varint,7,opt,name=MaxHeight,proto3" json:"MaxHeight,omitempty"`
+	MinDepth      int32                  `protobuf:"varint,8,opt,name=MinDepth,proto3" json:"MinDepth,omitempty"`
+	MaxDepth      int32                  `protobuf:"varint,9,opt,name=MaxDepth,proto3" json:"MaxDepth,omitempty"`
+	Materials     []string               `protobuf:"bytes,10,rep,name=Materials,proto3" json:"Materials,omitempty"`
+	Colors        []string               `protobuf:"bytes,11,rep,name=Colors,proto3" json:"Colors,omitempty"`
+	MinPrice      int32                  `protobuf:"varint,12,opt,name=MinPrice,proto3" json:"MinPrice,omitempty"`
+	MaxPrice      int32                  `protobuf:"varint,13,opt,name=MaxPrice,proto3" json:"MaxPrice,omitempty"`
+	SortBy        string                 `protobuf:"bytes,14,opt,name=SortBy,proto3" json:"SortBy,omitempty"`
+	SortOrder     string                 `protobuf:"bytes,15,opt,name=SortOrder,proto3" json:"SortOrder,omitempty"`
+	Offset        int32                  `protobuf:"varint,16,opt,name=Offset,proto3" json:"Offset,omitempty"`
+	Limit         int32                  `protobuf:"varint,17,opt,name=Limit,proto3" json:"Limit,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ProductFilter) Reset() {
 	*x = ProductFilter{}
-	mi := &file_products_products_proto_msgTypes[3]
+	mi := &file_products_products_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -294,7 +259,7 @@ func (x *ProductFilter) String() string {
 func (*ProductFilter) ProtoMessage() {}
 
 func (x *ProductFilter) ProtoReflect() protoreflect.Message {
-	mi := &file_products_products_proto_msgTypes[3]
+	mi := &file_products_products_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -307,7 +272,7 @@ func (x *ProductFilter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProductFilter.ProtoReflect.Descriptor instead.
 func (*ProductFilter) Descriptor() ([]byte, []int) {
-	return file_products_products_proto_rawDescGZIP(), []int{3}
+	return file_products_products_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ProductFilter) GetBrand() []string {
@@ -320,6 +285,13 @@ func (x *ProductFilter) GetBrand() []string {
 func (x *ProductFilter) GetCountry() []string {
 	if x != nil {
 		return x.Country
+	}
+	return nil
+}
+
+func (x *ProductFilter) GetCategory() []string {
+	if x != nil {
+		return x.Category
 	}
 	return nil
 }
@@ -422,55 +394,655 @@ func (x *ProductFilter) GetLimit() int32 {
 	return 0
 }
 
+type Id struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=Id,proto3" json:"Id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Id) Reset() {
+	*x = Id{}
+	mi := &file_products_products_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Id) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Id) ProtoMessage() {}
+
+func (x *Id) ProtoReflect() protoreflect.Message {
+	mi := &file_products_products_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Id.ProtoReflect.Descriptor instead.
+func (*Id) Descriptor() ([]byte, []int) {
+	return file_products_products_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *Id) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type Brand struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=Id,proto3" json:"Id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=Name,proto3" json:"Name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Brand) Reset() {
+	*x = Brand{}
+	mi := &file_products_products_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Brand) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Brand) ProtoMessage() {}
+
+func (x *Brand) ProtoReflect() protoreflect.Message {
+	mi := &file_products_products_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Brand.ProtoReflect.Descriptor instead.
+func (*Brand) Descriptor() ([]byte, []int) {
+	return file_products_products_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *Brand) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Brand) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type BrandList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Brands        []*Brand               `protobuf:"bytes,1,rep,name=brands,proto3" json:"brands,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BrandList) Reset() {
+	*x = BrandList{}
+	mi := &file_products_products_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BrandList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BrandList) ProtoMessage() {}
+
+func (x *BrandList) ProtoReflect() protoreflect.Message {
+	mi := &file_products_products_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BrandList.ProtoReflect.Descriptor instead.
+func (*BrandList) Descriptor() ([]byte, []int) {
+	return file_products_products_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *BrandList) GetBrands() []*Brand {
+	if x != nil {
+		return x.Brands
+	}
+	return nil
+}
+
+type Category struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=Id,proto3" json:"Id,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=Title,proto3" json:"Title,omitempty"`
+	Uri           string                 `protobuf:"bytes,3,opt,name=Uri,proto3" json:"Uri,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Category) Reset() {
+	*x = Category{}
+	mi := &file_products_products_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Category) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Category) ProtoMessage() {}
+
+func (x *Category) ProtoReflect() protoreflect.Message {
+	mi := &file_products_products_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Category.ProtoReflect.Descriptor instead.
+func (*Category) Descriptor() ([]byte, []int) {
+	return file_products_products_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *Category) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Category) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *Category) GetUri() string {
+	if x != nil {
+		return x.Uri
+	}
+	return ""
+}
+
+type CategoryList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Categories    []*Category            `protobuf:"bytes,1,rep,name=categories,proto3" json:"categories,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CategoryList) Reset() {
+	*x = CategoryList{}
+	mi := &file_products_products_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CategoryList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CategoryList) ProtoMessage() {}
+
+func (x *CategoryList) ProtoReflect() protoreflect.Message {
+	mi := &file_products_products_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CategoryList.ProtoReflect.Descriptor instead.
+func (*CategoryList) Descriptor() ([]byte, []int) {
+	return file_products_products_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *CategoryList) GetCategories() []*Category {
+	if x != nil {
+		return x.Categories
+	}
+	return nil
+}
+
+type Country struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=Id,proto3" json:"Id,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=Title,proto3" json:"Title,omitempty"`
+	Friendly      string                 `protobuf:"bytes,3,opt,name=Friendly,proto3" json:"Friendly,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Country) Reset() {
+	*x = Country{}
+	mi := &file_products_products_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Country) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Country) ProtoMessage() {}
+
+func (x *Country) ProtoReflect() protoreflect.Message {
+	mi := &file_products_products_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Country.ProtoReflect.Descriptor instead.
+func (*Country) Descriptor() ([]byte, []int) {
+	return file_products_products_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *Country) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Country) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *Country) GetFriendly() string {
+	if x != nil {
+		return x.Friendly
+	}
+	return ""
+}
+
+type CountryList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Countries     []*Country             `protobuf:"bytes,1,rep,name=countries,proto3" json:"countries,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CountryList) Reset() {
+	*x = CountryList{}
+	mi := &file_products_products_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CountryList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CountryList) ProtoMessage() {}
+
+func (x *CountryList) ProtoReflect() protoreflect.Message {
+	mi := &file_products_products_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CountryList.ProtoReflect.Descriptor instead.
+func (*CountryList) Descriptor() ([]byte, []int) {
+	return file_products_products_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *CountryList) GetCountries() []*Country {
+	if x != nil {
+		return x.Countries
+	}
+	return nil
+}
+
+type Material struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=Id,proto3" json:"Id,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=Title,proto3" json:"Title,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Material) Reset() {
+	*x = Material{}
+	mi := &file_products_products_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Material) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Material) ProtoMessage() {}
+
+func (x *Material) ProtoReflect() protoreflect.Message {
+	mi := &file_products_products_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Material.ProtoReflect.Descriptor instead.
+func (*Material) Descriptor() ([]byte, []int) {
+	return file_products_products_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *Material) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Material) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+type MaterialList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Materials     []*Material            `protobuf:"bytes,1,rep,name=materials,proto3" json:"materials,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MaterialList) Reset() {
+	*x = MaterialList{}
+	mi := &file_products_products_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MaterialList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MaterialList) ProtoMessage() {}
+
+func (x *MaterialList) ProtoReflect() protoreflect.Message {
+	mi := &file_products_products_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MaterialList.ProtoReflect.Descriptor instead.
+func (*MaterialList) Descriptor() ([]byte, []int) {
+	return file_products_products_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *MaterialList) GetMaterials() []*Material {
+	if x != nil {
+		return x.Materials
+	}
+	return nil
+}
+
+type Color struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=Id,proto3" json:"Id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=Name,proto3" json:"Name,omitempty"`
+	Hex           string                 `protobuf:"bytes,3,opt,name=Hex,proto3" json:"Hex,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Color) Reset() {
+	*x = Color{}
+	mi := &file_products_products_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Color) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Color) ProtoMessage() {}
+
+func (x *Color) ProtoReflect() protoreflect.Message {
+	mi := &file_products_products_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Color.ProtoReflect.Descriptor instead.
+func (*Color) Descriptor() ([]byte, []int) {
+	return file_products_products_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *Color) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Color) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Color) GetHex() string {
+	if x != nil {
+		return x.Hex
+	}
+	return ""
+}
+
+type ColorList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Colors        []*Color               `protobuf:"bytes,1,rep,name=colors,proto3" json:"colors,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ColorList) Reset() {
+	*x = ColorList{}
+	mi := &file_products_products_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ColorList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ColorList) ProtoMessage() {}
+
+func (x *ColorList) ProtoReflect() protoreflect.Message {
+	mi := &file_products_products_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ColorList.ProtoReflect.Descriptor instead.
+func (*ColorList) Descriptor() ([]byte, []int) {
+	return file_products_products_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *ColorList) GetColors() []*Color {
+	if x != nil {
+		return x.Colors
+	}
+	return nil
+}
+
 var File_products_products_proto protoreflect.FileDescriptor
 
 const file_products_products_proto_rawDesc = "" +
 	"\n" +
-	"\x17products/products.proto\x12\bproducts\x1a\x1bgoogle/protobuf/empty.proto\"<\n" +
-	"\vProductList\x12-\n" +
-	"\bproducts\x18\x01 \x03(\v2\x11.products.ProductR\bproducts\"\xd7\x02\n" +
+	"\x17products/products.proto\x12\bproducts\x1a\x1bgoogle/protobuf/empty.proto\"\xf5\x02\n" +
 	"\aProduct\x12\x0e\n" +
 	"\x02Id\x18\x01 \x01(\tR\x02Id\x12\x14\n" +
-	"\x05Title\x18\x03 \x01(\tR\x05Title\x12\x18\n" +
-	"\aArticle\x18\x04 \x01(\tR\aArticle\x12\x14\n" +
-	"\x05Brand\x18\x05 \x01(\tR\x05Brand\x12\x18\n" +
+	"\x05Title\x18\x02 \x01(\tR\x05Title\x12\x18\n" +
+	"\aArticle\x18\x03 \x01(\tR\aArticle\x12\x14\n" +
+	"\x05Brand\x18\x04 \x01(\tR\x05Brand\x12\x1a\n" +
+	"\bCategory\x18\x05 \x01(\tR\bCategory\x12\x18\n" +
 	"\aCountry\x18\x06 \x01(\tR\aCountry\x12\x14\n" +
 	"\x05Width\x18\a \x01(\x05R\x05Width\x12\x16\n" +
 	"\x06Height\x18\b \x01(\x05R\x06Height\x12\x14\n" +
 	"\x05Depth\x18\t \x01(\x05R\x05Depth\x12\x1c\n" +
 	"\tMaterials\x18\n" +
-	" \x03(\tR\tMaterials\x12\x14\n" +
-	"\x05Color\x18\v \x03(\tR\x05Color\x12\x16\n" +
+	" \x03(\tR\tMaterials\x12\x16\n" +
+	"\x06Colors\x18\v \x03(\tR\x06Colors\x12\x16\n" +
 	"\x06Photos\x18\f \x03(\tR\x06Photos\x12\x14\n" +
 	"\x05Seems\x18\r \x03(\tR\x05Seems\x12\x14\n" +
 	"\x05Price\x18\x0e \x01(\x05R\x05Price\x12 \n" +
-	"\vDescription\x18\x0f \x01(\tR\vDescription\"\x14\n" +
-	"\x02Id\x12\x0e\n" +
-	"\x02Id\x18\x01 \x01(\tR\x02Id\"\xbd\x03\n" +
+	"\vDescription\x18\x0f \x01(\tR\vDescription\"<\n" +
+	"\vProductList\x12-\n" +
+	"\bproducts\x18\x01 \x03(\v2\x11.products.ProductR\bproducts\"\xd9\x03\n" +
 	"\rProductFilter\x12\x14\n" +
 	"\x05Brand\x18\x01 \x03(\tR\x05Brand\x12\x18\n" +
 	"\aCountry\x18\x02 \x03(\tR\aCountry\x12\x1a\n" +
-	"\bMinWidth\x18\x03 \x01(\x05R\bMinWidth\x12\x1a\n" +
-	"\bMaxWidth\x18\x04 \x01(\x05R\bMaxWidth\x12\x1c\n" +
-	"\tMinHeight\x18\x05 \x01(\x05R\tMinHeight\x12\x1c\n" +
-	"\tMaxHeight\x18\x06 \x01(\x05R\tMaxHeight\x12\x1a\n" +
-	"\bMinDepth\x18\a \x01(\x05R\bMinDepth\x12\x1a\n" +
-	"\bMaxDepth\x18\b \x01(\x05R\bMaxDepth\x12\x1c\n" +
-	"\tMaterials\x18\t \x03(\tR\tMaterials\x12\x16\n" +
-	"\x06Colors\x18\n" +
-	" \x03(\tR\x06Colors\x12\x1a\n" +
-	"\bMinPrice\x18\v \x01(\x05R\bMinPrice\x12\x1a\n" +
-	"\bMaxPrice\x18\f \x01(\x05R\bMaxPrice\x12\x16\n" +
-	"\x06SortBy\x18\r \x01(\tR\x06SortBy\x12\x1c\n" +
-	"\tSortOrder\x18\x0e \x01(\tR\tSortOrder\x12\x16\n" +
-	"\x06Offset\x18\x0f \x01(\x05R\x06Offset\x12\x14\n" +
-	"\x05Limit\x18\x10 \x01(\x05R\x05Limit2\x9f\x02\n" +
-	"\bProducts\x123\n" +
-	"\x06Create\x12\x11.products.Product\x1a\x16.google.protobuf.Empty\x123\n" +
-	"\x06Update\x12\x11.products.Product\x1a\x16.google.protobuf.Empty\x12.\n" +
-	"\x06Delete\x12\f.products.Id\x1a\x16.google.protobuf.Empty\x127\n" +
-	"\x06GetAll\x12\x16.google.protobuf.Empty\x1a\x15.products.ProductList\x12@\n" +
-	"\x0eFilterProducts\x12\x17.products.ProductFilter\x1a\x15.products.ProductListB1Z/github.com/autumnterror/volha-proto;productsRPCb\x06proto3"
+	"\bCategory\x18\x03 \x03(\tR\bCategory\x12\x1a\n" +
+	"\bMinWidth\x18\x04 \x01(\x05R\bMinWidth\x12\x1a\n" +
+	"\bMaxWidth\x18\x05 \x01(\x05R\bMaxWidth\x12\x1c\n" +
+	"\tMinHeight\x18\x06 \x01(\x05R\tMinHeight\x12\x1c\n" +
+	"\tMaxHeight\x18\a \x01(\x05R\tMaxHeight\x12\x1a\n" +
+	"\bMinDepth\x18\b \x01(\x05R\bMinDepth\x12\x1a\n" +
+	"\bMaxDepth\x18\t \x01(\x05R\bMaxDepth\x12\x1c\n" +
+	"\tMaterials\x18\n" +
+	" \x03(\tR\tMaterials\x12\x16\n" +
+	"\x06Colors\x18\v \x03(\tR\x06Colors\x12\x1a\n" +
+	"\bMinPrice\x18\f \x01(\x05R\bMinPrice\x12\x1a\n" +
+	"\bMaxPrice\x18\r \x01(\x05R\bMaxPrice\x12\x16\n" +
+	"\x06SortBy\x18\x0e \x01(\tR\x06SortBy\x12\x1c\n" +
+	"\tSortOrder\x18\x0f \x01(\tR\tSortOrder\x12\x16\n" +
+	"\x06Offset\x18\x10 \x01(\x05R\x06Offset\x12\x14\n" +
+	"\x05Limit\x18\x11 \x01(\x05R\x05Limit\"\x14\n" +
+	"\x02Id\x12\x0e\n" +
+	"\x02Id\x18\x01 \x01(\tR\x02Id\"+\n" +
+	"\x05Brand\x12\x0e\n" +
+	"\x02Id\x18\x01 \x01(\tR\x02Id\x12\x12\n" +
+	"\x04Name\x18\x02 \x01(\tR\x04Name\"4\n" +
+	"\tBrandList\x12'\n" +
+	"\x06brands\x18\x01 \x03(\v2\x0f.products.BrandR\x06brands\"B\n" +
+	"\bCategory\x12\x0e\n" +
+	"\x02Id\x18\x01 \x01(\tR\x02Id\x12\x14\n" +
+	"\x05Title\x18\x02 \x01(\tR\x05Title\x12\x10\n" +
+	"\x03Uri\x18\x03 \x01(\tR\x03Uri\"B\n" +
+	"\fCategoryList\x122\n" +
+	"\n" +
+	"categories\x18\x01 \x03(\v2\x12.products.CategoryR\n" +
+	"categories\"K\n" +
+	"\aCountry\x12\x0e\n" +
+	"\x02Id\x18\x01 \x01(\tR\x02Id\x12\x14\n" +
+	"\x05Title\x18\x02 \x01(\tR\x05Title\x12\x1a\n" +
+	"\bFriendly\x18\x03 \x01(\tR\bFriendly\">\n" +
+	"\vCountryList\x12/\n" +
+	"\tcountries\x18\x01 \x03(\v2\x11.products.CountryR\tcountries\"0\n" +
+	"\bMaterial\x12\x0e\n" +
+	"\x02Id\x18\x01 \x01(\tR\x02Id\x12\x14\n" +
+	"\x05Title\x18\x02 \x01(\tR\x05Title\"@\n" +
+	"\fMaterialList\x120\n" +
+	"\tmaterials\x18\x01 \x03(\v2\x12.products.MaterialR\tmaterials\"=\n" +
+	"\x05Color\x12\x0e\n" +
+	"\x02Id\x18\x01 \x01(\tR\x02Id\x12\x12\n" +
+	"\x04Name\x18\x02 \x01(\tR\x04Name\x12\x10\n" +
+	"\x03Hex\x18\x03 \x01(\tR\x03Hex\"4\n" +
+	"\tColorList\x12'\n" +
+	"\x06colors\x18\x01 \x03(\v2\x0f.products.ColorR\x06colors2\xe0\v\n" +
+	"\bProducts\x12:\n" +
+	"\rCreateProduct\x12\x11.products.Product\x1a\x16.google.protobuf.Empty\x12:\n" +
+	"\rUpdateProduct\x12\x11.products.Product\x1a\x16.google.protobuf.Empty\x125\n" +
+	"\rDeleteProduct\x12\f.products.Id\x1a\x16.google.protobuf.Empty\x12?\n" +
+	"\x0eGetAllProducts\x12\x16.google.protobuf.Empty\x1a\x15.products.ProductList\x12@\n" +
+	"\x0eFilterProducts\x12\x17.products.ProductFilter\x1a\x15.products.ProductList\x126\n" +
+	"\vCreateBrand\x12\x0f.products.Brand\x1a\x16.google.protobuf.Empty\x126\n" +
+	"\vUpdateBrand\x12\x0f.products.Brand\x1a\x16.google.protobuf.Empty\x123\n" +
+	"\vDeleteBrand\x12\f.products.Id\x1a\x16.google.protobuf.Empty\x12;\n" +
+	"\fGetAllBrands\x12\x16.google.protobuf.Empty\x1a\x13.products.BrandList\x12<\n" +
+	"\x0eCreateCategory\x12\x12.products.Category\x1a\x16.google.protobuf.Empty\x12<\n" +
+	"\x0eUpdateCategory\x12\x12.products.Category\x1a\x16.google.protobuf.Empty\x126\n" +
+	"\x0eDeleteCategory\x12\f.products.Id\x1a\x16.google.protobuf.Empty\x12B\n" +
+	"\x10GetAllCategories\x12\x16.google.protobuf.Empty\x1a\x16.products.CategoryList\x12:\n" +
+	"\rCreateCountry\x12\x11.products.Country\x1a\x16.google.protobuf.Empty\x12:\n" +
+	"\rUpdateCountry\x12\x11.products.Country\x1a\x16.google.protobuf.Empty\x125\n" +
+	"\rDeleteCountry\x12\f.products.Id\x1a\x16.google.protobuf.Empty\x12@\n" +
+	"\x0fGetAllCountries\x12\x16.google.protobuf.Empty\x1a\x15.products.CountryList\x12<\n" +
+	"\x0eCreateMaterial\x12\x12.products.Material\x1a\x16.google.protobuf.Empty\x12<\n" +
+	"\x0eUpdateMaterial\x12\x12.products.Material\x1a\x16.google.protobuf.Empty\x126\n" +
+	"\x0eDeleteMaterial\x12\f.products.Id\x1a\x16.google.protobuf.Empty\x12A\n" +
+	"\x0fGetAllMaterials\x12\x16.google.protobuf.Empty\x1a\x16.products.MaterialList\x126\n" +
+	"\vCreateColor\x12\x0f.products.Color\x1a\x16.google.protobuf.Empty\x126\n" +
+	"\vUpdateColor\x12\x0f.products.Color\x1a\x16.google.protobuf.Empty\x123\n" +
+	"\vDeleteColor\x12\f.products.Id\x1a\x16.google.protobuf.Empty\x12;\n" +
+	"\fGetAllColors\x12\x16.google.protobuf.Empty\x1a\x13.products.ColorListB1Z/github.com/autumnterror/volha-proto;productsRPCb\x06proto3"
 
 var (
 	file_products_products_proto_rawDescOnce sync.Once
@@ -484,31 +1056,86 @@ func file_products_products_proto_rawDescGZIP() []byte {
 	return file_products_products_proto_rawDescData
 }
 
-var file_products_products_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_products_products_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_products_products_proto_goTypes = []any{
-	(*ProductList)(nil),   // 0: products.ProductList
-	(*Product)(nil),       // 1: products.Product
-	(*Id)(nil),            // 2: products.Id
-	(*ProductFilter)(nil), // 3: products.ProductFilter
-	(*emptypb.Empty)(nil), // 4: google.protobuf.Empty
+	(*Product)(nil),       // 0: products.Product
+	(*ProductList)(nil),   // 1: products.ProductList
+	(*ProductFilter)(nil), // 2: products.ProductFilter
+	(*Id)(nil),            // 3: products.Id
+	(*Brand)(nil),         // 4: products.Brand
+	(*BrandList)(nil),     // 5: products.BrandList
+	(*Category)(nil),      // 6: products.Category
+	(*CategoryList)(nil),  // 7: products.CategoryList
+	(*Country)(nil),       // 8: products.Country
+	(*CountryList)(nil),   // 9: products.CountryList
+	(*Material)(nil),      // 10: products.Material
+	(*MaterialList)(nil),  // 11: products.MaterialList
+	(*Color)(nil),         // 12: products.Color
+	(*ColorList)(nil),     // 13: products.ColorList
+	(*emptypb.Empty)(nil), // 14: google.protobuf.Empty
 }
 var file_products_products_proto_depIdxs = []int32{
-	1, // 0: products.ProductList.products:type_name -> products.Product
-	1, // 1: products.Products.Create:input_type -> products.Product
-	1, // 2: products.Products.Update:input_type -> products.Product
-	2, // 3: products.Products.Delete:input_type -> products.Id
-	4, // 4: products.Products.GetAll:input_type -> google.protobuf.Empty
-	3, // 5: products.Products.FilterProducts:input_type -> products.ProductFilter
-	4, // 6: products.Products.Create:output_type -> google.protobuf.Empty
-	4, // 7: products.Products.Update:output_type -> google.protobuf.Empty
-	4, // 8: products.Products.Delete:output_type -> google.protobuf.Empty
-	0, // 9: products.Products.GetAll:output_type -> products.ProductList
-	0, // 10: products.Products.FilterProducts:output_type -> products.ProductList
-	6, // [6:11] is the sub-list for method output_type
-	1, // [1:6] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	0,  // 0: products.ProductList.products:type_name -> products.Product
+	4,  // 1: products.BrandList.brands:type_name -> products.Brand
+	6,  // 2: products.CategoryList.categories:type_name -> products.Category
+	8,  // 3: products.CountryList.countries:type_name -> products.Country
+	10, // 4: products.MaterialList.materials:type_name -> products.Material
+	12, // 5: products.ColorList.colors:type_name -> products.Color
+	0,  // 6: products.Products.CreateProduct:input_type -> products.Product
+	0,  // 7: products.Products.UpdateProduct:input_type -> products.Product
+	3,  // 8: products.Products.DeleteProduct:input_type -> products.Id
+	14, // 9: products.Products.GetAllProducts:input_type -> google.protobuf.Empty
+	2,  // 10: products.Products.FilterProducts:input_type -> products.ProductFilter
+	4,  // 11: products.Products.CreateBrand:input_type -> products.Brand
+	4,  // 12: products.Products.UpdateBrand:input_type -> products.Brand
+	3,  // 13: products.Products.DeleteBrand:input_type -> products.Id
+	14, // 14: products.Products.GetAllBrands:input_type -> google.protobuf.Empty
+	6,  // 15: products.Products.CreateCategory:input_type -> products.Category
+	6,  // 16: products.Products.UpdateCategory:input_type -> products.Category
+	3,  // 17: products.Products.DeleteCategory:input_type -> products.Id
+	14, // 18: products.Products.GetAllCategories:input_type -> google.protobuf.Empty
+	8,  // 19: products.Products.CreateCountry:input_type -> products.Country
+	8,  // 20: products.Products.UpdateCountry:input_type -> products.Country
+	3,  // 21: products.Products.DeleteCountry:input_type -> products.Id
+	14, // 22: products.Products.GetAllCountries:input_type -> google.protobuf.Empty
+	10, // 23: products.Products.CreateMaterial:input_type -> products.Material
+	10, // 24: products.Products.UpdateMaterial:input_type -> products.Material
+	3,  // 25: products.Products.DeleteMaterial:input_type -> products.Id
+	14, // 26: products.Products.GetAllMaterials:input_type -> google.protobuf.Empty
+	12, // 27: products.Products.CreateColor:input_type -> products.Color
+	12, // 28: products.Products.UpdateColor:input_type -> products.Color
+	3,  // 29: products.Products.DeleteColor:input_type -> products.Id
+	14, // 30: products.Products.GetAllColors:input_type -> google.protobuf.Empty
+	14, // 31: products.Products.CreateProduct:output_type -> google.protobuf.Empty
+	14, // 32: products.Products.UpdateProduct:output_type -> google.protobuf.Empty
+	14, // 33: products.Products.DeleteProduct:output_type -> google.protobuf.Empty
+	1,  // 34: products.Products.GetAllProducts:output_type -> products.ProductList
+	1,  // 35: products.Products.FilterProducts:output_type -> products.ProductList
+	14, // 36: products.Products.CreateBrand:output_type -> google.protobuf.Empty
+	14, // 37: products.Products.UpdateBrand:output_type -> google.protobuf.Empty
+	14, // 38: products.Products.DeleteBrand:output_type -> google.protobuf.Empty
+	5,  // 39: products.Products.GetAllBrands:output_type -> products.BrandList
+	14, // 40: products.Products.CreateCategory:output_type -> google.protobuf.Empty
+	14, // 41: products.Products.UpdateCategory:output_type -> google.protobuf.Empty
+	14, // 42: products.Products.DeleteCategory:output_type -> google.protobuf.Empty
+	7,  // 43: products.Products.GetAllCategories:output_type -> products.CategoryList
+	14, // 44: products.Products.CreateCountry:output_type -> google.protobuf.Empty
+	14, // 45: products.Products.UpdateCountry:output_type -> google.protobuf.Empty
+	14, // 46: products.Products.DeleteCountry:output_type -> google.protobuf.Empty
+	9,  // 47: products.Products.GetAllCountries:output_type -> products.CountryList
+	14, // 48: products.Products.CreateMaterial:output_type -> google.protobuf.Empty
+	14, // 49: products.Products.UpdateMaterial:output_type -> google.protobuf.Empty
+	14, // 50: products.Products.DeleteMaterial:output_type -> google.protobuf.Empty
+	11, // 51: products.Products.GetAllMaterials:output_type -> products.MaterialList
+	14, // 52: products.Products.CreateColor:output_type -> google.protobuf.Empty
+	14, // 53: products.Products.UpdateColor:output_type -> google.protobuf.Empty
+	14, // 54: products.Products.DeleteColor:output_type -> google.protobuf.Empty
+	13, // 55: products.Products.GetAllColors:output_type -> products.ColorList
+	31, // [31:56] is the sub-list for method output_type
+	6,  // [6:31] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_products_products_proto_init() }
@@ -522,7 +1149,7 @@ func file_products_products_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_products_products_proto_rawDesc), len(file_products_products_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

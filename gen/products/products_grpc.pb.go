@@ -20,22 +20,72 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Products_Create_FullMethodName         = "/products.Products/Create"
-	Products_Update_FullMethodName         = "/products.Products/Update"
-	Products_Delete_FullMethodName         = "/products.Products/Delete"
-	Products_GetAll_FullMethodName         = "/products.Products/GetAll"
-	Products_FilterProducts_FullMethodName = "/products.Products/FilterProducts"
+	Products_CreateProduct_FullMethodName    = "/products.Products/CreateProduct"
+	Products_UpdateProduct_FullMethodName    = "/products.Products/UpdateProduct"
+	Products_DeleteProduct_FullMethodName    = "/products.Products/DeleteProduct"
+	Products_GetAllProducts_FullMethodName   = "/products.Products/GetAllProducts"
+	Products_FilterProducts_FullMethodName   = "/products.Products/FilterProducts"
+	Products_CreateBrand_FullMethodName      = "/products.Products/CreateBrand"
+	Products_UpdateBrand_FullMethodName      = "/products.Products/UpdateBrand"
+	Products_DeleteBrand_FullMethodName      = "/products.Products/DeleteBrand"
+	Products_GetAllBrands_FullMethodName     = "/products.Products/GetAllBrands"
+	Products_CreateCategory_FullMethodName   = "/products.Products/CreateCategory"
+	Products_UpdateCategory_FullMethodName   = "/products.Products/UpdateCategory"
+	Products_DeleteCategory_FullMethodName   = "/products.Products/DeleteCategory"
+	Products_GetAllCategories_FullMethodName = "/products.Products/GetAllCategories"
+	Products_CreateCountry_FullMethodName    = "/products.Products/CreateCountry"
+	Products_UpdateCountry_FullMethodName    = "/products.Products/UpdateCountry"
+	Products_DeleteCountry_FullMethodName    = "/products.Products/DeleteCountry"
+	Products_GetAllCountries_FullMethodName  = "/products.Products/GetAllCountries"
+	Products_CreateMaterial_FullMethodName   = "/products.Products/CreateMaterial"
+	Products_UpdateMaterial_FullMethodName   = "/products.Products/UpdateMaterial"
+	Products_DeleteMaterial_FullMethodName   = "/products.Products/DeleteMaterial"
+	Products_GetAllMaterials_FullMethodName  = "/products.Products/GetAllMaterials"
+	Products_CreateColor_FullMethodName      = "/products.Products/CreateColor"
+	Products_UpdateColor_FullMethodName      = "/products.Products/UpdateColor"
+	Products_DeleteColor_FullMethodName      = "/products.Products/DeleteColor"
+	Products_GetAllColors_FullMethodName     = "/products.Products/GetAllColors"
 )
 
 // ProductsClient is the client API for Products service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// ─────────────────────────────────────────────
+// Main service definition
+// ─────────────────────────────────────────────
 type ProductsClient interface {
-	Create(ctx context.Context, in *Product, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	Update(ctx context.Context, in *Product, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	Delete(ctx context.Context, in *Id, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	GetAll(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ProductList, error)
+	// Products
+	CreateProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UpdateProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteProduct(ctx context.Context, in *Id, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetAllProducts(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ProductList, error)
 	FilterProducts(ctx context.Context, in *ProductFilter, opts ...grpc.CallOption) (*ProductList, error)
+	// Brands
+	CreateBrand(ctx context.Context, in *Brand, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UpdateBrand(ctx context.Context, in *Brand, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteBrand(ctx context.Context, in *Id, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetAllBrands(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*BrandList, error)
+	// Categories
+	CreateCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UpdateCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteCategory(ctx context.Context, in *Id, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetAllCategories(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*CategoryList, error)
+	// Countries
+	CreateCountry(ctx context.Context, in *Country, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UpdateCountry(ctx context.Context, in *Country, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteCountry(ctx context.Context, in *Id, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetAllCountries(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*CountryList, error)
+	// Materials
+	CreateMaterial(ctx context.Context, in *Material, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UpdateMaterial(ctx context.Context, in *Material, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteMaterial(ctx context.Context, in *Id, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetAllMaterials(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*MaterialList, error)
+	// Colors
+	CreateColor(ctx context.Context, in *Color, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UpdateColor(ctx context.Context, in *Color, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteColor(ctx context.Context, in *Id, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetAllColors(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ColorList, error)
 }
 
 type productsClient struct {
@@ -46,40 +96,40 @@ func NewProductsClient(cc grpc.ClientConnInterface) ProductsClient {
 	return &productsClient{cc}
 }
 
-func (c *productsClient) Create(ctx context.Context, in *Product, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *productsClient) CreateProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, Products_Create_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Products_CreateProduct_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *productsClient) Update(ctx context.Context, in *Product, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *productsClient) UpdateProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, Products_Update_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Products_UpdateProduct_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *productsClient) Delete(ctx context.Context, in *Id, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *productsClient) DeleteProduct(ctx context.Context, in *Id, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, Products_Delete_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Products_DeleteProduct_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *productsClient) GetAll(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ProductList, error) {
+func (c *productsClient) GetAllProducts(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ProductList, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ProductList)
-	err := c.cc.Invoke(ctx, Products_GetAll_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Products_GetAllProducts_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -96,15 +146,245 @@ func (c *productsClient) FilterProducts(ctx context.Context, in *ProductFilter, 
 	return out, nil
 }
 
+func (c *productsClient) CreateBrand(ctx context.Context, in *Brand, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Products_CreateBrand_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) UpdateBrand(ctx context.Context, in *Brand, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Products_UpdateBrand_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) DeleteBrand(ctx context.Context, in *Id, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Products_DeleteBrand_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) GetAllBrands(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*BrandList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(BrandList)
+	err := c.cc.Invoke(ctx, Products_GetAllBrands_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) CreateCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Products_CreateCategory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) UpdateCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Products_UpdateCategory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) DeleteCategory(ctx context.Context, in *Id, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Products_DeleteCategory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) GetAllCategories(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*CategoryList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CategoryList)
+	err := c.cc.Invoke(ctx, Products_GetAllCategories_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) CreateCountry(ctx context.Context, in *Country, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Products_CreateCountry_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) UpdateCountry(ctx context.Context, in *Country, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Products_UpdateCountry_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) DeleteCountry(ctx context.Context, in *Id, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Products_DeleteCountry_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) GetAllCountries(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*CountryList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CountryList)
+	err := c.cc.Invoke(ctx, Products_GetAllCountries_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) CreateMaterial(ctx context.Context, in *Material, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Products_CreateMaterial_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) UpdateMaterial(ctx context.Context, in *Material, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Products_UpdateMaterial_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) DeleteMaterial(ctx context.Context, in *Id, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Products_DeleteMaterial_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) GetAllMaterials(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*MaterialList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MaterialList)
+	err := c.cc.Invoke(ctx, Products_GetAllMaterials_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) CreateColor(ctx context.Context, in *Color, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Products_CreateColor_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) UpdateColor(ctx context.Context, in *Color, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Products_UpdateColor_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) DeleteColor(ctx context.Context, in *Id, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Products_DeleteColor_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) GetAllColors(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ColorList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ColorList)
+	err := c.cc.Invoke(ctx, Products_GetAllColors_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProductsServer is the server API for Products service.
 // All implementations must embed UnimplementedProductsServer
 // for forward compatibility.
+//
+// ─────────────────────────────────────────────
+// Main service definition
+// ─────────────────────────────────────────────
 type ProductsServer interface {
-	Create(context.Context, *Product) (*emptypb.Empty, error)
-	Update(context.Context, *Product) (*emptypb.Empty, error)
-	Delete(context.Context, *Id) (*emptypb.Empty, error)
-	GetAll(context.Context, *emptypb.Empty) (*ProductList, error)
+	// Products
+	CreateProduct(context.Context, *Product) (*emptypb.Empty, error)
+	UpdateProduct(context.Context, *Product) (*emptypb.Empty, error)
+	DeleteProduct(context.Context, *Id) (*emptypb.Empty, error)
+	GetAllProducts(context.Context, *emptypb.Empty) (*ProductList, error)
 	FilterProducts(context.Context, *ProductFilter) (*ProductList, error)
+	// Brands
+	CreateBrand(context.Context, *Brand) (*emptypb.Empty, error)
+	UpdateBrand(context.Context, *Brand) (*emptypb.Empty, error)
+	DeleteBrand(context.Context, *Id) (*emptypb.Empty, error)
+	GetAllBrands(context.Context, *emptypb.Empty) (*BrandList, error)
+	// Categories
+	CreateCategory(context.Context, *Category) (*emptypb.Empty, error)
+	UpdateCategory(context.Context, *Category) (*emptypb.Empty, error)
+	DeleteCategory(context.Context, *Id) (*emptypb.Empty, error)
+	GetAllCategories(context.Context, *emptypb.Empty) (*CategoryList, error)
+	// Countries
+	CreateCountry(context.Context, *Country) (*emptypb.Empty, error)
+	UpdateCountry(context.Context, *Country) (*emptypb.Empty, error)
+	DeleteCountry(context.Context, *Id) (*emptypb.Empty, error)
+	GetAllCountries(context.Context, *emptypb.Empty) (*CountryList, error)
+	// Materials
+	CreateMaterial(context.Context, *Material) (*emptypb.Empty, error)
+	UpdateMaterial(context.Context, *Material) (*emptypb.Empty, error)
+	DeleteMaterial(context.Context, *Id) (*emptypb.Empty, error)
+	GetAllMaterials(context.Context, *emptypb.Empty) (*MaterialList, error)
+	// Colors
+	CreateColor(context.Context, *Color) (*emptypb.Empty, error)
+	UpdateColor(context.Context, *Color) (*emptypb.Empty, error)
+	DeleteColor(context.Context, *Id) (*emptypb.Empty, error)
+	GetAllColors(context.Context, *emptypb.Empty) (*ColorList, error)
 	mustEmbedUnimplementedProductsServer()
 }
 
@@ -115,20 +395,80 @@ type ProductsServer interface {
 // pointer dereference when methods are called.
 type UnimplementedProductsServer struct{}
 
-func (UnimplementedProductsServer) Create(context.Context, *Product) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+func (UnimplementedProductsServer) CreateProduct(context.Context, *Product) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateProduct not implemented")
 }
-func (UnimplementedProductsServer) Update(context.Context, *Product) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+func (UnimplementedProductsServer) UpdateProduct(context.Context, *Product) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateProduct not implemented")
 }
-func (UnimplementedProductsServer) Delete(context.Context, *Id) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+func (UnimplementedProductsServer) DeleteProduct(context.Context, *Id) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteProduct not implemented")
 }
-func (UnimplementedProductsServer) GetAll(context.Context, *emptypb.Empty) (*ProductList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAll not implemented")
+func (UnimplementedProductsServer) GetAllProducts(context.Context, *emptypb.Empty) (*ProductList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllProducts not implemented")
 }
 func (UnimplementedProductsServer) FilterProducts(context.Context, *ProductFilter) (*ProductList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FilterProducts not implemented")
+}
+func (UnimplementedProductsServer) CreateBrand(context.Context, *Brand) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateBrand not implemented")
+}
+func (UnimplementedProductsServer) UpdateBrand(context.Context, *Brand) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateBrand not implemented")
+}
+func (UnimplementedProductsServer) DeleteBrand(context.Context, *Id) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteBrand not implemented")
+}
+func (UnimplementedProductsServer) GetAllBrands(context.Context, *emptypb.Empty) (*BrandList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllBrands not implemented")
+}
+func (UnimplementedProductsServer) CreateCategory(context.Context, *Category) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateCategory not implemented")
+}
+func (UnimplementedProductsServer) UpdateCategory(context.Context, *Category) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateCategory not implemented")
+}
+func (UnimplementedProductsServer) DeleteCategory(context.Context, *Id) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCategory not implemented")
+}
+func (UnimplementedProductsServer) GetAllCategories(context.Context, *emptypb.Empty) (*CategoryList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllCategories not implemented")
+}
+func (UnimplementedProductsServer) CreateCountry(context.Context, *Country) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateCountry not implemented")
+}
+func (UnimplementedProductsServer) UpdateCountry(context.Context, *Country) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateCountry not implemented")
+}
+func (UnimplementedProductsServer) DeleteCountry(context.Context, *Id) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCountry not implemented")
+}
+func (UnimplementedProductsServer) GetAllCountries(context.Context, *emptypb.Empty) (*CountryList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllCountries not implemented")
+}
+func (UnimplementedProductsServer) CreateMaterial(context.Context, *Material) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateMaterial not implemented")
+}
+func (UnimplementedProductsServer) UpdateMaterial(context.Context, *Material) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateMaterial not implemented")
+}
+func (UnimplementedProductsServer) DeleteMaterial(context.Context, *Id) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteMaterial not implemented")
+}
+func (UnimplementedProductsServer) GetAllMaterials(context.Context, *emptypb.Empty) (*MaterialList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllMaterials not implemented")
+}
+func (UnimplementedProductsServer) CreateColor(context.Context, *Color) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateColor not implemented")
+}
+func (UnimplementedProductsServer) UpdateColor(context.Context, *Color) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateColor not implemented")
+}
+func (UnimplementedProductsServer) DeleteColor(context.Context, *Id) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteColor not implemented")
+}
+func (UnimplementedProductsServer) GetAllColors(context.Context, *emptypb.Empty) (*ColorList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllColors not implemented")
 }
 func (UnimplementedProductsServer) mustEmbedUnimplementedProductsServer() {}
 func (UnimplementedProductsServer) testEmbeddedByValue()                  {}
@@ -151,74 +491,74 @@ func RegisterProductsServer(s grpc.ServiceRegistrar, srv ProductsServer) {
 	s.RegisterService(&Products_ServiceDesc, srv)
 }
 
-func _Products_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Products_CreateProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Product)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProductsServer).Create(ctx, in)
+		return srv.(ProductsServer).CreateProduct(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Products_Create_FullMethodName,
+		FullMethod: Products_CreateProduct_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProductsServer).Create(ctx, req.(*Product))
+		return srv.(ProductsServer).CreateProduct(ctx, req.(*Product))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Products_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Products_UpdateProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Product)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProductsServer).Update(ctx, in)
+		return srv.(ProductsServer).UpdateProduct(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Products_Update_FullMethodName,
+		FullMethod: Products_UpdateProduct_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProductsServer).Update(ctx, req.(*Product))
+		return srv.(ProductsServer).UpdateProduct(ctx, req.(*Product))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Products_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Products_DeleteProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Id)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProductsServer).Delete(ctx, in)
+		return srv.(ProductsServer).DeleteProduct(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Products_Delete_FullMethodName,
+		FullMethod: Products_DeleteProduct_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProductsServer).Delete(ctx, req.(*Id))
+		return srv.(ProductsServer).DeleteProduct(ctx, req.(*Id))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Products_GetAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Products_GetAllProducts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProductsServer).GetAll(ctx, in)
+		return srv.(ProductsServer).GetAllProducts(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Products_GetAll_FullMethodName,
+		FullMethod: Products_GetAllProducts_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProductsServer).GetAll(ctx, req.(*emptypb.Empty))
+		return srv.(ProductsServer).GetAllProducts(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -241,6 +581,366 @@ func _Products_FilterProducts_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Products_CreateBrand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Brand)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).CreateBrand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_CreateBrand_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).CreateBrand(ctx, req.(*Brand))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_UpdateBrand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Brand)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).UpdateBrand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_UpdateBrand_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).UpdateBrand(ctx, req.(*Brand))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_DeleteBrand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Id)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).DeleteBrand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_DeleteBrand_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).DeleteBrand(ctx, req.(*Id))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_GetAllBrands_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).GetAllBrands(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_GetAllBrands_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).GetAllBrands(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_CreateCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Category)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).CreateCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_CreateCategory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).CreateCategory(ctx, req.(*Category))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_UpdateCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Category)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).UpdateCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_UpdateCategory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).UpdateCategory(ctx, req.(*Category))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_DeleteCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Id)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).DeleteCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_DeleteCategory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).DeleteCategory(ctx, req.(*Id))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_GetAllCategories_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).GetAllCategories(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_GetAllCategories_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).GetAllCategories(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_CreateCountry_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Country)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).CreateCountry(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_CreateCountry_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).CreateCountry(ctx, req.(*Country))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_UpdateCountry_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Country)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).UpdateCountry(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_UpdateCountry_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).UpdateCountry(ctx, req.(*Country))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_DeleteCountry_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Id)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).DeleteCountry(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_DeleteCountry_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).DeleteCountry(ctx, req.(*Id))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_GetAllCountries_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).GetAllCountries(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_GetAllCountries_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).GetAllCountries(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_CreateMaterial_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Material)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).CreateMaterial(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_CreateMaterial_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).CreateMaterial(ctx, req.(*Material))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_UpdateMaterial_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Material)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).UpdateMaterial(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_UpdateMaterial_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).UpdateMaterial(ctx, req.(*Material))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_DeleteMaterial_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Id)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).DeleteMaterial(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_DeleteMaterial_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).DeleteMaterial(ctx, req.(*Id))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_GetAllMaterials_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).GetAllMaterials(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_GetAllMaterials_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).GetAllMaterials(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_CreateColor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Color)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).CreateColor(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_CreateColor_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).CreateColor(ctx, req.(*Color))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_UpdateColor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Color)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).UpdateColor(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_UpdateColor_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).UpdateColor(ctx, req.(*Color))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_DeleteColor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Id)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).DeleteColor(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_DeleteColor_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).DeleteColor(ctx, req.(*Id))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_GetAllColors_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).GetAllColors(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_GetAllColors_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).GetAllColors(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Products_ServiceDesc is the grpc.ServiceDesc for Products service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -249,24 +949,104 @@ var Products_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ProductsServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Create",
-			Handler:    _Products_Create_Handler,
+			MethodName: "CreateProduct",
+			Handler:    _Products_CreateProduct_Handler,
 		},
 		{
-			MethodName: "Update",
-			Handler:    _Products_Update_Handler,
+			MethodName: "UpdateProduct",
+			Handler:    _Products_UpdateProduct_Handler,
 		},
 		{
-			MethodName: "Delete",
-			Handler:    _Products_Delete_Handler,
+			MethodName: "DeleteProduct",
+			Handler:    _Products_DeleteProduct_Handler,
 		},
 		{
-			MethodName: "GetAll",
-			Handler:    _Products_GetAll_Handler,
+			MethodName: "GetAllProducts",
+			Handler:    _Products_GetAllProducts_Handler,
 		},
 		{
 			MethodName: "FilterProducts",
 			Handler:    _Products_FilterProducts_Handler,
+		},
+		{
+			MethodName: "CreateBrand",
+			Handler:    _Products_CreateBrand_Handler,
+		},
+		{
+			MethodName: "UpdateBrand",
+			Handler:    _Products_UpdateBrand_Handler,
+		},
+		{
+			MethodName: "DeleteBrand",
+			Handler:    _Products_DeleteBrand_Handler,
+		},
+		{
+			MethodName: "GetAllBrands",
+			Handler:    _Products_GetAllBrands_Handler,
+		},
+		{
+			MethodName: "CreateCategory",
+			Handler:    _Products_CreateCategory_Handler,
+		},
+		{
+			MethodName: "UpdateCategory",
+			Handler:    _Products_UpdateCategory_Handler,
+		},
+		{
+			MethodName: "DeleteCategory",
+			Handler:    _Products_DeleteCategory_Handler,
+		},
+		{
+			MethodName: "GetAllCategories",
+			Handler:    _Products_GetAllCategories_Handler,
+		},
+		{
+			MethodName: "CreateCountry",
+			Handler:    _Products_CreateCountry_Handler,
+		},
+		{
+			MethodName: "UpdateCountry",
+			Handler:    _Products_UpdateCountry_Handler,
+		},
+		{
+			MethodName: "DeleteCountry",
+			Handler:    _Products_DeleteCountry_Handler,
+		},
+		{
+			MethodName: "GetAllCountries",
+			Handler:    _Products_GetAllCountries_Handler,
+		},
+		{
+			MethodName: "CreateMaterial",
+			Handler:    _Products_CreateMaterial_Handler,
+		},
+		{
+			MethodName: "UpdateMaterial",
+			Handler:    _Products_UpdateMaterial_Handler,
+		},
+		{
+			MethodName: "DeleteMaterial",
+			Handler:    _Products_DeleteMaterial_Handler,
+		},
+		{
+			MethodName: "GetAllMaterials",
+			Handler:    _Products_GetAllMaterials_Handler,
+		},
+		{
+			MethodName: "CreateColor",
+			Handler:    _Products_CreateColor_Handler,
+		},
+		{
+			MethodName: "UpdateColor",
+			Handler:    _Products_UpdateColor_Handler,
+		},
+		{
+			MethodName: "DeleteColor",
+			Handler:    _Products_DeleteColor_Handler,
+		},
+		{
+			MethodName: "GetAllColors",
+			Handler:    _Products_GetAllColors_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
