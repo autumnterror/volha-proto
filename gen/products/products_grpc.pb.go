@@ -20,6 +20,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	Products_GetDictionaries_FullMethodName  = "/products.Products/GetDictionaries"
 	Products_CreateProduct_FullMethodName    = "/products.Products/CreateProduct"
 	Products_UpdateProduct_FullMethodName    = "/products.Products/UpdateProduct"
 	Products_DeleteProduct_FullMethodName    = "/products.Products/DeleteProduct"
@@ -55,6 +56,7 @@ const (
 // Main service definition
 // ─────────────────────────────────────────────
 type ProductsClient interface {
+	GetDictionaries(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Dictionaries, error)
 	// Products
 	CreateProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	UpdateProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -94,6 +96,16 @@ type productsClient struct {
 
 func NewProductsClient(cc grpc.ClientConnInterface) ProductsClient {
 	return &productsClient{cc}
+}
+
+func (c *productsClient) GetDictionaries(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Dictionaries, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Dictionaries)
+	err := c.cc.Invoke(ctx, Products_GetDictionaries_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *productsClient) CreateProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*emptypb.Empty, error) {
@@ -354,6 +366,7 @@ func (c *productsClient) GetAllColors(ctx context.Context, in *emptypb.Empty, op
 // Main service definition
 // ─────────────────────────────────────────────
 type ProductsServer interface {
+	GetDictionaries(context.Context, *emptypb.Empty) (*Dictionaries, error)
 	// Products
 	CreateProduct(context.Context, *Product) (*emptypb.Empty, error)
 	UpdateProduct(context.Context, *Product) (*emptypb.Empty, error)
@@ -395,6 +408,9 @@ type ProductsServer interface {
 // pointer dereference when methods are called.
 type UnimplementedProductsServer struct{}
 
+func (UnimplementedProductsServer) GetDictionaries(context.Context, *emptypb.Empty) (*Dictionaries, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDictionaries not implemented")
+}
 func (UnimplementedProductsServer) CreateProduct(context.Context, *Product) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateProduct not implemented")
 }
@@ -489,6 +505,24 @@ func RegisterProductsServer(s grpc.ServiceRegistrar, srv ProductsServer) {
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&Products_ServiceDesc, srv)
+}
+
+func _Products_GetDictionaries_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).GetDictionaries(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_GetDictionaries_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).GetDictionaries(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _Products_CreateProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -948,6 +982,10 @@ var Products_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "products.Products",
 	HandlerType: (*ProductsServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetDictionaries",
+			Handler:    _Products_GetDictionaries_Handler,
+		},
 		{
 			MethodName: "CreateProduct",
 			Handler:    _Products_CreateProduct_Handler,

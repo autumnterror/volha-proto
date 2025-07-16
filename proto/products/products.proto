@@ -10,6 +10,9 @@ import "google/protobuf/empty.proto";
 // Main service definition
 // ─────────────────────────────────────────────
 service Products {
+  rpc GetDictionaries(google.protobuf.Empty) returns (Dictionaries);
+
+
   // Products
   rpc CreateProduct(Product) returns (google.protobuf.Empty);
   rpc UpdateProduct(Product) returns (google.protobuf.Empty);
@@ -46,6 +49,14 @@ service Products {
   rpc UpdateColor(Color) returns (google.protobuf.Empty);
   rpc DeleteColor(Id) returns (google.protobuf.Empty);
   rpc GetAllColors(google.protobuf.Empty) returns (ColorList);
+}
+
+message Dictionaries {
+  BrandList brands = 1;
+  CategoryList categories = 2;
+  CountryList countries = 3;
+  MaterialList materials = 4;
+  ColorList colors = 5;
 }
 
 // ─────────────────────────────────────────────

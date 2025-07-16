@@ -22,6 +22,82 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type Dictionaries struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Brands        *BrandList             `protobuf:"bytes,1,opt,name=brands,proto3" json:"brands,omitempty"`
+	Categories    *CategoryList          `protobuf:"bytes,2,opt,name=categories,proto3" json:"categories,omitempty"`
+	Countries     *CountryList           `protobuf:"bytes,3,opt,name=countries,proto3" json:"countries,omitempty"`
+	Materials     *MaterialList          `protobuf:"bytes,4,opt,name=materials,proto3" json:"materials,omitempty"`
+	Colors        *ColorList             `protobuf:"bytes,5,opt,name=colors,proto3" json:"colors,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Dictionaries) Reset() {
+	*x = Dictionaries{}
+	mi := &file_products_products_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Dictionaries) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Dictionaries) ProtoMessage() {}
+
+func (x *Dictionaries) ProtoReflect() protoreflect.Message {
+	mi := &file_products_products_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Dictionaries.ProtoReflect.Descriptor instead.
+func (*Dictionaries) Descriptor() ([]byte, []int) {
+	return file_products_products_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *Dictionaries) GetBrands() *BrandList {
+	if x != nil {
+		return x.Brands
+	}
+	return nil
+}
+
+func (x *Dictionaries) GetCategories() *CategoryList {
+	if x != nil {
+		return x.Categories
+	}
+	return nil
+}
+
+func (x *Dictionaries) GetCountries() *CountryList {
+	if x != nil {
+		return x.Countries
+	}
+	return nil
+}
+
+func (x *Dictionaries) GetMaterials() *MaterialList {
+	if x != nil {
+		return x.Materials
+	}
+	return nil
+}
+
+func (x *Dictionaries) GetColors() *ColorList {
+	if x != nil {
+		return x.Colors
+	}
+	return nil
+}
+
 type Product struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=Id,proto3" json:"Id,omitempty"`
@@ -45,7 +121,7 @@ type Product struct {
 
 func (x *Product) Reset() {
 	*x = Product{}
-	mi := &file_products_products_proto_msgTypes[0]
+	mi := &file_products_products_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -57,7 +133,7 @@ func (x *Product) String() string {
 func (*Product) ProtoMessage() {}
 
 func (x *Product) ProtoReflect() protoreflect.Message {
-	mi := &file_products_products_proto_msgTypes[0]
+	mi := &file_products_products_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -70,7 +146,7 @@ func (x *Product) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Product.ProtoReflect.Descriptor instead.
 func (*Product) Descriptor() ([]byte, []int) {
-	return file_products_products_proto_rawDescGZIP(), []int{0}
+	return file_products_products_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Product) GetId() string {
@@ -187,7 +263,7 @@ type ProductList struct {
 
 func (x *ProductList) Reset() {
 	*x = ProductList{}
-	mi := &file_products_products_proto_msgTypes[1]
+	mi := &file_products_products_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -199,7 +275,7 @@ func (x *ProductList) String() string {
 func (*ProductList) ProtoMessage() {}
 
 func (x *ProductList) ProtoReflect() protoreflect.Message {
-	mi := &file_products_products_proto_msgTypes[1]
+	mi := &file_products_products_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -212,7 +288,7 @@ func (x *ProductList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProductList.ProtoReflect.Descriptor instead.
 func (*ProductList) Descriptor() ([]byte, []int) {
-	return file_products_products_proto_rawDescGZIP(), []int{1}
+	return file_products_products_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ProductList) GetProducts() []*Product {
@@ -247,7 +323,7 @@ type ProductFilter struct {
 
 func (x *ProductFilter) Reset() {
 	*x = ProductFilter{}
-	mi := &file_products_products_proto_msgTypes[2]
+	mi := &file_products_products_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -259,7 +335,7 @@ func (x *ProductFilter) String() string {
 func (*ProductFilter) ProtoMessage() {}
 
 func (x *ProductFilter) ProtoReflect() protoreflect.Message {
-	mi := &file_products_products_proto_msgTypes[2]
+	mi := &file_products_products_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -272,7 +348,7 @@ func (x *ProductFilter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProductFilter.ProtoReflect.Descriptor instead.
 func (*ProductFilter) Descriptor() ([]byte, []int) {
-	return file_products_products_proto_rawDescGZIP(), []int{2}
+	return file_products_products_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *ProductFilter) GetBrand() []string {
@@ -403,7 +479,7 @@ type Id struct {
 
 func (x *Id) Reset() {
 	*x = Id{}
-	mi := &file_products_products_proto_msgTypes[3]
+	mi := &file_products_products_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -415,7 +491,7 @@ func (x *Id) String() string {
 func (*Id) ProtoMessage() {}
 
 func (x *Id) ProtoReflect() protoreflect.Message {
-	mi := &file_products_products_proto_msgTypes[3]
+	mi := &file_products_products_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -428,7 +504,7 @@ func (x *Id) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Id.ProtoReflect.Descriptor instead.
 func (*Id) Descriptor() ([]byte, []int) {
-	return file_products_products_proto_rawDescGZIP(), []int{3}
+	return file_products_products_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Id) GetId() string {
@@ -448,7 +524,7 @@ type Brand struct {
 
 func (x *Brand) Reset() {
 	*x = Brand{}
-	mi := &file_products_products_proto_msgTypes[4]
+	mi := &file_products_products_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -460,7 +536,7 @@ func (x *Brand) String() string {
 func (*Brand) ProtoMessage() {}
 
 func (x *Brand) ProtoReflect() protoreflect.Message {
-	mi := &file_products_products_proto_msgTypes[4]
+	mi := &file_products_products_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -473,7 +549,7 @@ func (x *Brand) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Brand.ProtoReflect.Descriptor instead.
 func (*Brand) Descriptor() ([]byte, []int) {
-	return file_products_products_proto_rawDescGZIP(), []int{4}
+	return file_products_products_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *Brand) GetId() string {
@@ -499,7 +575,7 @@ type BrandList struct {
 
 func (x *BrandList) Reset() {
 	*x = BrandList{}
-	mi := &file_products_products_proto_msgTypes[5]
+	mi := &file_products_products_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -511,7 +587,7 @@ func (x *BrandList) String() string {
 func (*BrandList) ProtoMessage() {}
 
 func (x *BrandList) ProtoReflect() protoreflect.Message {
-	mi := &file_products_products_proto_msgTypes[5]
+	mi := &file_products_products_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -524,7 +600,7 @@ func (x *BrandList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BrandList.ProtoReflect.Descriptor instead.
 func (*BrandList) Descriptor() ([]byte, []int) {
-	return file_products_products_proto_rawDescGZIP(), []int{5}
+	return file_products_products_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *BrandList) GetBrands() []*Brand {
@@ -545,7 +621,7 @@ type Category struct {
 
 func (x *Category) Reset() {
 	*x = Category{}
-	mi := &file_products_products_proto_msgTypes[6]
+	mi := &file_products_products_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -557,7 +633,7 @@ func (x *Category) String() string {
 func (*Category) ProtoMessage() {}
 
 func (x *Category) ProtoReflect() protoreflect.Message {
-	mi := &file_products_products_proto_msgTypes[6]
+	mi := &file_products_products_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -570,7 +646,7 @@ func (x *Category) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Category.ProtoReflect.Descriptor instead.
 func (*Category) Descriptor() ([]byte, []int) {
-	return file_products_products_proto_rawDescGZIP(), []int{6}
+	return file_products_products_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *Category) GetId() string {
@@ -603,7 +679,7 @@ type CategoryList struct {
 
 func (x *CategoryList) Reset() {
 	*x = CategoryList{}
-	mi := &file_products_products_proto_msgTypes[7]
+	mi := &file_products_products_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -615,7 +691,7 @@ func (x *CategoryList) String() string {
 func (*CategoryList) ProtoMessage() {}
 
 func (x *CategoryList) ProtoReflect() protoreflect.Message {
-	mi := &file_products_products_proto_msgTypes[7]
+	mi := &file_products_products_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -628,7 +704,7 @@ func (x *CategoryList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CategoryList.ProtoReflect.Descriptor instead.
 func (*CategoryList) Descriptor() ([]byte, []int) {
-	return file_products_products_proto_rawDescGZIP(), []int{7}
+	return file_products_products_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *CategoryList) GetCategories() []*Category {
@@ -649,7 +725,7 @@ type Country struct {
 
 func (x *Country) Reset() {
 	*x = Country{}
-	mi := &file_products_products_proto_msgTypes[8]
+	mi := &file_products_products_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -661,7 +737,7 @@ func (x *Country) String() string {
 func (*Country) ProtoMessage() {}
 
 func (x *Country) ProtoReflect() protoreflect.Message {
-	mi := &file_products_products_proto_msgTypes[8]
+	mi := &file_products_products_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -674,7 +750,7 @@ func (x *Country) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Country.ProtoReflect.Descriptor instead.
 func (*Country) Descriptor() ([]byte, []int) {
-	return file_products_products_proto_rawDescGZIP(), []int{8}
+	return file_products_products_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *Country) GetId() string {
@@ -707,7 +783,7 @@ type CountryList struct {
 
 func (x *CountryList) Reset() {
 	*x = CountryList{}
-	mi := &file_products_products_proto_msgTypes[9]
+	mi := &file_products_products_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -719,7 +795,7 @@ func (x *CountryList) String() string {
 func (*CountryList) ProtoMessage() {}
 
 func (x *CountryList) ProtoReflect() protoreflect.Message {
-	mi := &file_products_products_proto_msgTypes[9]
+	mi := &file_products_products_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -732,7 +808,7 @@ func (x *CountryList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CountryList.ProtoReflect.Descriptor instead.
 func (*CountryList) Descriptor() ([]byte, []int) {
-	return file_products_products_proto_rawDescGZIP(), []int{9}
+	return file_products_products_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *CountryList) GetCountries() []*Country {
@@ -752,7 +828,7 @@ type Material struct {
 
 func (x *Material) Reset() {
 	*x = Material{}
-	mi := &file_products_products_proto_msgTypes[10]
+	mi := &file_products_products_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -764,7 +840,7 @@ func (x *Material) String() string {
 func (*Material) ProtoMessage() {}
 
 func (x *Material) ProtoReflect() protoreflect.Message {
-	mi := &file_products_products_proto_msgTypes[10]
+	mi := &file_products_products_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -777,7 +853,7 @@ func (x *Material) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Material.ProtoReflect.Descriptor instead.
 func (*Material) Descriptor() ([]byte, []int) {
-	return file_products_products_proto_rawDescGZIP(), []int{10}
+	return file_products_products_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *Material) GetId() string {
@@ -803,7 +879,7 @@ type MaterialList struct {
 
 func (x *MaterialList) Reset() {
 	*x = MaterialList{}
-	mi := &file_products_products_proto_msgTypes[11]
+	mi := &file_products_products_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -815,7 +891,7 @@ func (x *MaterialList) String() string {
 func (*MaterialList) ProtoMessage() {}
 
 func (x *MaterialList) ProtoReflect() protoreflect.Message {
-	mi := &file_products_products_proto_msgTypes[11]
+	mi := &file_products_products_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -828,7 +904,7 @@ func (x *MaterialList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MaterialList.ProtoReflect.Descriptor instead.
 func (*MaterialList) Descriptor() ([]byte, []int) {
-	return file_products_products_proto_rawDescGZIP(), []int{11}
+	return file_products_products_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *MaterialList) GetMaterials() []*Material {
@@ -849,7 +925,7 @@ type Color struct {
 
 func (x *Color) Reset() {
 	*x = Color{}
-	mi := &file_products_products_proto_msgTypes[12]
+	mi := &file_products_products_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -861,7 +937,7 @@ func (x *Color) String() string {
 func (*Color) ProtoMessage() {}
 
 func (x *Color) ProtoReflect() protoreflect.Message {
-	mi := &file_products_products_proto_msgTypes[12]
+	mi := &file_products_products_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -874,7 +950,7 @@ func (x *Color) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Color.ProtoReflect.Descriptor instead.
 func (*Color) Descriptor() ([]byte, []int) {
-	return file_products_products_proto_rawDescGZIP(), []int{12}
+	return file_products_products_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *Color) GetId() string {
@@ -907,7 +983,7 @@ type ColorList struct {
 
 func (x *ColorList) Reset() {
 	*x = ColorList{}
-	mi := &file_products_products_proto_msgTypes[13]
+	mi := &file_products_products_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -919,7 +995,7 @@ func (x *ColorList) String() string {
 func (*ColorList) ProtoMessage() {}
 
 func (x *ColorList) ProtoReflect() protoreflect.Message {
-	mi := &file_products_products_proto_msgTypes[13]
+	mi := &file_products_products_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -932,7 +1008,7 @@ func (x *ColorList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ColorList.ProtoReflect.Descriptor instead.
 func (*ColorList) Descriptor() ([]byte, []int) {
-	return file_products_products_proto_rawDescGZIP(), []int{13}
+	return file_products_products_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *ColorList) GetColors() []*Color {
@@ -946,7 +1022,15 @@ var File_products_products_proto protoreflect.FileDescriptor
 
 const file_products_products_proto_rawDesc = "" +
 	"\n" +
-	"\x17products/products.proto\x12\bproducts\x1a\x1bgoogle/protobuf/empty.proto\"\xf5\x02\n" +
+	"\x17products/products.proto\x12\bproducts\x1a\x1bgoogle/protobuf/empty.proto\"\x8b\x02\n" +
+	"\fDictionaries\x12+\n" +
+	"\x06brands\x18\x01 \x01(\v2\x13.products.BrandListR\x06brands\x126\n" +
+	"\n" +
+	"categories\x18\x02 \x01(\v2\x16.products.CategoryListR\n" +
+	"categories\x123\n" +
+	"\tcountries\x18\x03 \x01(\v2\x15.products.CountryListR\tcountries\x124\n" +
+	"\tmaterials\x18\x04 \x01(\v2\x16.products.MaterialListR\tmaterials\x12+\n" +
+	"\x06colors\x18\x05 \x01(\v2\x13.products.ColorListR\x06colors\"\xf5\x02\n" +
 	"\aProduct\x12\x0e\n" +
 	"\x02Id\x18\x01 \x01(\tR\x02Id\x12\x14\n" +
 	"\x05Title\x18\x02 \x01(\tR\x05Title\x12\x18\n" +
@@ -1016,8 +1100,9 @@ const file_products_products_proto_rawDesc = "" +
 	"\x04Name\x18\x02 \x01(\tR\x04Name\x12\x10\n" +
 	"\x03Hex\x18\x03 \x01(\tR\x03Hex\"4\n" +
 	"\tColorList\x12'\n" +
-	"\x06colors\x18\x01 \x03(\v2\x0f.products.ColorR\x06colors2\xe0\v\n" +
-	"\bProducts\x12:\n" +
+	"\x06colors\x18\x01 \x03(\v2\x0f.products.ColorR\x06colors2\xa3\f\n" +
+	"\bProducts\x12A\n" +
+	"\x0fGetDictionaries\x12\x16.google.protobuf.Empty\x1a\x16.products.Dictionaries\x12:\n" +
 	"\rCreateProduct\x12\x11.products.Product\x1a\x16.google.protobuf.Empty\x12:\n" +
 	"\rUpdateProduct\x12\x11.products.Product\x1a\x16.google.protobuf.Empty\x125\n" +
 	"\rDeleteProduct\x12\f.products.Id\x1a\x16.google.protobuf.Empty\x12?\n" +
@@ -1056,86 +1141,94 @@ func file_products_products_proto_rawDescGZIP() []byte {
 	return file_products_products_proto_rawDescData
 }
 
-var file_products_products_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_products_products_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_products_products_proto_goTypes = []any{
-	(*Product)(nil),       // 0: products.Product
-	(*ProductList)(nil),   // 1: products.ProductList
-	(*ProductFilter)(nil), // 2: products.ProductFilter
-	(*Id)(nil),            // 3: products.Id
-	(*Brand)(nil),         // 4: products.Brand
-	(*BrandList)(nil),     // 5: products.BrandList
-	(*Category)(nil),      // 6: products.Category
-	(*CategoryList)(nil),  // 7: products.CategoryList
-	(*Country)(nil),       // 8: products.Country
-	(*CountryList)(nil),   // 9: products.CountryList
-	(*Material)(nil),      // 10: products.Material
-	(*MaterialList)(nil),  // 11: products.MaterialList
-	(*Color)(nil),         // 12: products.Color
-	(*ColorList)(nil),     // 13: products.ColorList
-	(*emptypb.Empty)(nil), // 14: google.protobuf.Empty
+	(*Dictionaries)(nil),  // 0: products.Dictionaries
+	(*Product)(nil),       // 1: products.Product
+	(*ProductList)(nil),   // 2: products.ProductList
+	(*ProductFilter)(nil), // 3: products.ProductFilter
+	(*Id)(nil),            // 4: products.Id
+	(*Brand)(nil),         // 5: products.Brand
+	(*BrandList)(nil),     // 6: products.BrandList
+	(*Category)(nil),      // 7: products.Category
+	(*CategoryList)(nil),  // 8: products.CategoryList
+	(*Country)(nil),       // 9: products.Country
+	(*CountryList)(nil),   // 10: products.CountryList
+	(*Material)(nil),      // 11: products.Material
+	(*MaterialList)(nil),  // 12: products.MaterialList
+	(*Color)(nil),         // 13: products.Color
+	(*ColorList)(nil),     // 14: products.ColorList
+	(*emptypb.Empty)(nil), // 15: google.protobuf.Empty
 }
 var file_products_products_proto_depIdxs = []int32{
-	0,  // 0: products.ProductList.products:type_name -> products.Product
-	4,  // 1: products.BrandList.brands:type_name -> products.Brand
-	6,  // 2: products.CategoryList.categories:type_name -> products.Category
-	8,  // 3: products.CountryList.countries:type_name -> products.Country
-	10, // 4: products.MaterialList.materials:type_name -> products.Material
-	12, // 5: products.ColorList.colors:type_name -> products.Color
-	0,  // 6: products.Products.CreateProduct:input_type -> products.Product
-	0,  // 7: products.Products.UpdateProduct:input_type -> products.Product
-	3,  // 8: products.Products.DeleteProduct:input_type -> products.Id
-	14, // 9: products.Products.GetAllProducts:input_type -> google.protobuf.Empty
-	2,  // 10: products.Products.FilterProducts:input_type -> products.ProductFilter
-	4,  // 11: products.Products.CreateBrand:input_type -> products.Brand
-	4,  // 12: products.Products.UpdateBrand:input_type -> products.Brand
-	3,  // 13: products.Products.DeleteBrand:input_type -> products.Id
-	14, // 14: products.Products.GetAllBrands:input_type -> google.protobuf.Empty
-	6,  // 15: products.Products.CreateCategory:input_type -> products.Category
-	6,  // 16: products.Products.UpdateCategory:input_type -> products.Category
-	3,  // 17: products.Products.DeleteCategory:input_type -> products.Id
-	14, // 18: products.Products.GetAllCategories:input_type -> google.protobuf.Empty
-	8,  // 19: products.Products.CreateCountry:input_type -> products.Country
-	8,  // 20: products.Products.UpdateCountry:input_type -> products.Country
-	3,  // 21: products.Products.DeleteCountry:input_type -> products.Id
-	14, // 22: products.Products.GetAllCountries:input_type -> google.protobuf.Empty
-	10, // 23: products.Products.CreateMaterial:input_type -> products.Material
-	10, // 24: products.Products.UpdateMaterial:input_type -> products.Material
-	3,  // 25: products.Products.DeleteMaterial:input_type -> products.Id
-	14, // 26: products.Products.GetAllMaterials:input_type -> google.protobuf.Empty
-	12, // 27: products.Products.CreateColor:input_type -> products.Color
-	12, // 28: products.Products.UpdateColor:input_type -> products.Color
-	3,  // 29: products.Products.DeleteColor:input_type -> products.Id
-	14, // 30: products.Products.GetAllColors:input_type -> google.protobuf.Empty
-	14, // 31: products.Products.CreateProduct:output_type -> google.protobuf.Empty
-	14, // 32: products.Products.UpdateProduct:output_type -> google.protobuf.Empty
-	14, // 33: products.Products.DeleteProduct:output_type -> google.protobuf.Empty
-	1,  // 34: products.Products.GetAllProducts:output_type -> products.ProductList
-	1,  // 35: products.Products.FilterProducts:output_type -> products.ProductList
-	14, // 36: products.Products.CreateBrand:output_type -> google.protobuf.Empty
-	14, // 37: products.Products.UpdateBrand:output_type -> google.protobuf.Empty
-	14, // 38: products.Products.DeleteBrand:output_type -> google.protobuf.Empty
-	5,  // 39: products.Products.GetAllBrands:output_type -> products.BrandList
-	14, // 40: products.Products.CreateCategory:output_type -> google.protobuf.Empty
-	14, // 41: products.Products.UpdateCategory:output_type -> google.protobuf.Empty
-	14, // 42: products.Products.DeleteCategory:output_type -> google.protobuf.Empty
-	7,  // 43: products.Products.GetAllCategories:output_type -> products.CategoryList
-	14, // 44: products.Products.CreateCountry:output_type -> google.protobuf.Empty
-	14, // 45: products.Products.UpdateCountry:output_type -> google.protobuf.Empty
-	14, // 46: products.Products.DeleteCountry:output_type -> google.protobuf.Empty
-	9,  // 47: products.Products.GetAllCountries:output_type -> products.CountryList
-	14, // 48: products.Products.CreateMaterial:output_type -> google.protobuf.Empty
-	14, // 49: products.Products.UpdateMaterial:output_type -> google.protobuf.Empty
-	14, // 50: products.Products.DeleteMaterial:output_type -> google.protobuf.Empty
-	11, // 51: products.Products.GetAllMaterials:output_type -> products.MaterialList
-	14, // 52: products.Products.CreateColor:output_type -> google.protobuf.Empty
-	14, // 53: products.Products.UpdateColor:output_type -> google.protobuf.Empty
-	14, // 54: products.Products.DeleteColor:output_type -> google.protobuf.Empty
-	13, // 55: products.Products.GetAllColors:output_type -> products.ColorList
-	31, // [31:56] is the sub-list for method output_type
-	6,  // [6:31] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	6,  // 0: products.Dictionaries.brands:type_name -> products.BrandList
+	8,  // 1: products.Dictionaries.categories:type_name -> products.CategoryList
+	10, // 2: products.Dictionaries.countries:type_name -> products.CountryList
+	12, // 3: products.Dictionaries.materials:type_name -> products.MaterialList
+	14, // 4: products.Dictionaries.colors:type_name -> products.ColorList
+	1,  // 5: products.ProductList.products:type_name -> products.Product
+	5,  // 6: products.BrandList.brands:type_name -> products.Brand
+	7,  // 7: products.CategoryList.categories:type_name -> products.Category
+	9,  // 8: products.CountryList.countries:type_name -> products.Country
+	11, // 9: products.MaterialList.materials:type_name -> products.Material
+	13, // 10: products.ColorList.colors:type_name -> products.Color
+	15, // 11: products.Products.GetDictionaries:input_type -> google.protobuf.Empty
+	1,  // 12: products.Products.CreateProduct:input_type -> products.Product
+	1,  // 13: products.Products.UpdateProduct:input_type -> products.Product
+	4,  // 14: products.Products.DeleteProduct:input_type -> products.Id
+	15, // 15: products.Products.GetAllProducts:input_type -> google.protobuf.Empty
+	3,  // 16: products.Products.FilterProducts:input_type -> products.ProductFilter
+	5,  // 17: products.Products.CreateBrand:input_type -> products.Brand
+	5,  // 18: products.Products.UpdateBrand:input_type -> products.Brand
+	4,  // 19: products.Products.DeleteBrand:input_type -> products.Id
+	15, // 20: products.Products.GetAllBrands:input_type -> google.protobuf.Empty
+	7,  // 21: products.Products.CreateCategory:input_type -> products.Category
+	7,  // 22: products.Products.UpdateCategory:input_type -> products.Category
+	4,  // 23: products.Products.DeleteCategory:input_type -> products.Id
+	15, // 24: products.Products.GetAllCategories:input_type -> google.protobuf.Empty
+	9,  // 25: products.Products.CreateCountry:input_type -> products.Country
+	9,  // 26: products.Products.UpdateCountry:input_type -> products.Country
+	4,  // 27: products.Products.DeleteCountry:input_type -> products.Id
+	15, // 28: products.Products.GetAllCountries:input_type -> google.protobuf.Empty
+	11, // 29: products.Products.CreateMaterial:input_type -> products.Material
+	11, // 30: products.Products.UpdateMaterial:input_type -> products.Material
+	4,  // 31: products.Products.DeleteMaterial:input_type -> products.Id
+	15, // 32: products.Products.GetAllMaterials:input_type -> google.protobuf.Empty
+	13, // 33: products.Products.CreateColor:input_type -> products.Color
+	13, // 34: products.Products.UpdateColor:input_type -> products.Color
+	4,  // 35: products.Products.DeleteColor:input_type -> products.Id
+	15, // 36: products.Products.GetAllColors:input_type -> google.protobuf.Empty
+	0,  // 37: products.Products.GetDictionaries:output_type -> products.Dictionaries
+	15, // 38: products.Products.CreateProduct:output_type -> google.protobuf.Empty
+	15, // 39: products.Products.UpdateProduct:output_type -> google.protobuf.Empty
+	15, // 40: products.Products.DeleteProduct:output_type -> google.protobuf.Empty
+	2,  // 41: products.Products.GetAllProducts:output_type -> products.ProductList
+	2,  // 42: products.Products.FilterProducts:output_type -> products.ProductList
+	15, // 43: products.Products.CreateBrand:output_type -> google.protobuf.Empty
+	15, // 44: products.Products.UpdateBrand:output_type -> google.protobuf.Empty
+	15, // 45: products.Products.DeleteBrand:output_type -> google.protobuf.Empty
+	6,  // 46: products.Products.GetAllBrands:output_type -> products.BrandList
+	15, // 47: products.Products.CreateCategory:output_type -> google.protobuf.Empty
+	15, // 48: products.Products.UpdateCategory:output_type -> google.protobuf.Empty
+	15, // 49: products.Products.DeleteCategory:output_type -> google.protobuf.Empty
+	8,  // 50: products.Products.GetAllCategories:output_type -> products.CategoryList
+	15, // 51: products.Products.CreateCountry:output_type -> google.protobuf.Empty
+	15, // 52: products.Products.UpdateCountry:output_type -> google.protobuf.Empty
+	15, // 53: products.Products.DeleteCountry:output_type -> google.protobuf.Empty
+	10, // 54: products.Products.GetAllCountries:output_type -> products.CountryList
+	15, // 55: products.Products.CreateMaterial:output_type -> google.protobuf.Empty
+	15, // 56: products.Products.UpdateMaterial:output_type -> google.protobuf.Empty
+	15, // 57: products.Products.DeleteMaterial:output_type -> google.protobuf.Empty
+	12, // 58: products.Products.GetAllMaterials:output_type -> products.MaterialList
+	15, // 59: products.Products.CreateColor:output_type -> google.protobuf.Empty
+	15, // 60: products.Products.UpdateColor:output_type -> google.protobuf.Empty
+	15, // 61: products.Products.DeleteColor:output_type -> google.protobuf.Empty
+	14, // 62: products.Products.GetAllColors:output_type -> products.ColorList
+	37, // [37:63] is the sub-list for method output_type
+	11, // [11:37] is the sub-list for method input_type
+	11, // [11:11] is the sub-list for extension type_name
+	11, // [11:11] is the sub-list for extension extendee
+	0,  // [0:11] is the sub-list for field type_name
 }
 
 func init() { file_products_products_proto_init() }
@@ -1149,7 +1242,7 @@ func file_products_products_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_products_products_proto_rawDesc), len(file_products_products_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   14,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
