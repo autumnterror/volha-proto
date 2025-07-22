@@ -29,6 +29,14 @@ type Dictionaries struct {
 	Countries     *CountryList           `protobuf:"bytes,3,opt,name=countries,proto3" json:"countries,omitempty"`
 	Materials     *MaterialList          `protobuf:"bytes,4,opt,name=materials,proto3" json:"materials,omitempty"`
 	Colors        *ColorList             `protobuf:"bytes,5,opt,name=colors,proto3" json:"colors,omitempty"`
+	MinPrice      int32                  `protobuf:"varint,6,opt,name=min_price,json=minPrice,proto3" json:"min_price,omitempty"`
+	MaxPrice      int32                  `protobuf:"varint,7,opt,name=max_price,json=maxPrice,proto3" json:"max_price,omitempty"`
+	MinWidth      int32                  `protobuf:"varint,8,opt,name=min_width,json=minWidth,proto3" json:"min_width,omitempty"`
+	MaxWidth      int32                  `protobuf:"varint,9,opt,name=max_width,json=maxWidth,proto3" json:"max_width,omitempty"`
+	MinHeight     int32                  `protobuf:"varint,10,opt,name=min_height,json=minHeight,proto3" json:"min_height,omitempty"`
+	MaxHeight     int32                  `protobuf:"varint,11,opt,name=max_height,json=maxHeight,proto3" json:"max_height,omitempty"`
+	MinDepth      int32                  `protobuf:"varint,12,opt,name=min_depth,json=minDepth,proto3" json:"min_depth,omitempty"`
+	MaxDepth      int32                  `protobuf:"varint,13,opt,name=max_depth,json=maxDepth,proto3" json:"max_depth,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -96,6 +104,62 @@ func (x *Dictionaries) GetColors() *ColorList {
 		return x.Colors
 	}
 	return nil
+}
+
+func (x *Dictionaries) GetMinPrice() int32 {
+	if x != nil {
+		return x.MinPrice
+	}
+	return 0
+}
+
+func (x *Dictionaries) GetMaxPrice() int32 {
+	if x != nil {
+		return x.MaxPrice
+	}
+	return 0
+}
+
+func (x *Dictionaries) GetMinWidth() int32 {
+	if x != nil {
+		return x.MinWidth
+	}
+	return 0
+}
+
+func (x *Dictionaries) GetMaxWidth() int32 {
+	if x != nil {
+		return x.MaxWidth
+	}
+	return 0
+}
+
+func (x *Dictionaries) GetMinHeight() int32 {
+	if x != nil {
+		return x.MinHeight
+	}
+	return 0
+}
+
+func (x *Dictionaries) GetMaxHeight() int32 {
+	if x != nil {
+		return x.MaxHeight
+	}
+	return 0
+}
+
+func (x *Dictionaries) GetMinDepth() int32 {
+	if x != nil {
+		return x.MinDepth
+	}
+	return 0
+}
+
+func (x *Dictionaries) GetMaxDepth() int32 {
+	if x != nil {
+		return x.MaxDepth
+	}
+	return 0
 }
 
 type Product struct {
@@ -1022,7 +1086,7 @@ var File_products_products_proto protoreflect.FileDescriptor
 
 const file_products_products_proto_rawDesc = "" +
 	"\n" +
-	"\x17products/products.proto\x12\bproducts\x1a\x1bgoogle/protobuf/empty.proto\"\x8b\x02\n" +
+	"\x17products/products.proto\x12\bproducts\x1a\x1bgoogle/protobuf/empty.proto\"\xf7\x03\n" +
 	"\fDictionaries\x12+\n" +
 	"\x06brands\x18\x01 \x01(\v2\x13.products.BrandListR\x06brands\x126\n" +
 	"\n" +
@@ -1030,7 +1094,18 @@ const file_products_products_proto_rawDesc = "" +
 	"categories\x123\n" +
 	"\tcountries\x18\x03 \x01(\v2\x15.products.CountryListR\tcountries\x124\n" +
 	"\tmaterials\x18\x04 \x01(\v2\x16.products.MaterialListR\tmaterials\x12+\n" +
-	"\x06colors\x18\x05 \x01(\v2\x13.products.ColorListR\x06colors\"\xf5\x02\n" +
+	"\x06colors\x18\x05 \x01(\v2\x13.products.ColorListR\x06colors\x12\x1b\n" +
+	"\tmin_price\x18\x06 \x01(\x05R\bminPrice\x12\x1b\n" +
+	"\tmax_price\x18\a \x01(\x05R\bmaxPrice\x12\x1b\n" +
+	"\tmin_width\x18\b \x01(\x05R\bminWidth\x12\x1b\n" +
+	"\tmax_width\x18\t \x01(\x05R\bmaxWidth\x12\x1d\n" +
+	"\n" +
+	"min_height\x18\n" +
+	" \x01(\x05R\tminHeight\x12\x1d\n" +
+	"\n" +
+	"max_height\x18\v \x01(\x05R\tmaxHeight\x12\x1b\n" +
+	"\tmin_depth\x18\f \x01(\x05R\bminDepth\x12\x1b\n" +
+	"\tmax_depth\x18\r \x01(\x05R\bmaxDepth\"\xf5\x02\n" +
 	"\aProduct\x12\x0e\n" +
 	"\x02Id\x18\x01 \x01(\tR\x02Id\x12\x14\n" +
 	"\x05Title\x18\x02 \x01(\tR\x05Title\x12\x18\n" +
