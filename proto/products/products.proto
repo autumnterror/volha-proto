@@ -11,9 +11,9 @@ import "google/protobuf/empty.proto";
 // ─────────────────────────────────────────────
 service Products {
   rpc GetDictionaries(google.protobuf.Empty) returns (Dictionaries);
-
-
+  
   // Products
+  rpc SearchProducts(ProductSearch) returns (ProductList);
   rpc CreateProduct(Product) returns (google.protobuf.Empty);
   rpc UpdateProduct(Product) returns (google.protobuf.Empty);
   rpc DeleteProduct(Id) returns (google.protobuf.Empty);
@@ -73,6 +73,12 @@ message Dictionaries {
 // Products
 // ─────────────────────────────────────────────
 
+message ProductSearch {
+  string id = 1;
+  string title = 2;
+  string article = 3;
+}
+
 message Product {
   string Id = 1;
   string Title = 2;
@@ -121,6 +127,10 @@ message ProductFilter {
 
 message Id {
   string Id = 1;
+}
+
+message Title {
+  string Title = 1;
 }
 
 // ─────────────────────────────────────────────
