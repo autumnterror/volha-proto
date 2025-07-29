@@ -92,7 +92,7 @@ message Product {
   repeated Material Materials = 10;
   repeated Color Colors = 11;
   repeated string Photos = 12;
-  repeated string Seems = 13;
+  repeated Product Seems = 13;
   int32 Price = 14;
   string Description = 15;
 }

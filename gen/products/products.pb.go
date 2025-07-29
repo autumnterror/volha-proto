@@ -236,7 +236,7 @@ type Product struct {
 	Materials     []*Material            `protobuf:"bytes,10,rep,name=Materials,proto3" json:"Materials,omitempty"`
 	Colors        []*Color               `protobuf:"bytes,11,rep,name=Colors,proto3" json:"Colors,omitempty"`
 	Photos        []string               `protobuf:"bytes,12,rep,name=Photos,proto3" json:"Photos,omitempty"`
-	Seems         []string               `protobuf:"bytes,13,rep,name=Seems,proto3" json:"Seems,omitempty"`
+	Seems         []*Product             `protobuf:"bytes,13,rep,name=Seems,proto3" json:"Seems,omitempty"`
 	Price         int32                  `protobuf:"varint,14,opt,name=Price,proto3" json:"Price,omitempty"`
 	Description   string                 `protobuf:"bytes,15,opt,name=Description,proto3" json:"Description,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -357,7 +357,7 @@ func (x *Product) GetPhotos() []string {
 	return nil
 }
 
-func (x *Product) GetSeems() []string {
+func (x *Product) GetSeems() []*Product {
 	if x != nil {
 		return x.Seems
 	}
@@ -1369,7 +1369,7 @@ const file_products_products_proto_rawDesc = "" +
 	"\rProductSearch\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x18\n" +
-	"\aarticle\x18\x03 \x01(\tR\aarticle\"\xd2\x03\n" +
+	"\aarticle\x18\x03 \x01(\tR\aarticle\"\xe5\x03\n" +
 	"\aProduct\x12\x0e\n" +
 	"\x02Id\x18\x01 \x01(\tR\x02Id\x12\x14\n" +
 	"\x05Title\x18\x02 \x01(\tR\x05Title\x12\x18\n" +
@@ -1383,8 +1383,8 @@ const file_products_products_proto_rawDesc = "" +
 	"\tMaterials\x18\n" +
 	" \x03(\v2\x12.products.MaterialR\tMaterials\x12'\n" +
 	"\x06Colors\x18\v \x03(\v2\x0f.products.ColorR\x06Colors\x12\x16\n" +
-	"\x06Photos\x18\f \x03(\tR\x06Photos\x12\x14\n" +
-	"\x05Seems\x18\r \x03(\tR\x05Seems\x12\x14\n" +
+	"\x06Photos\x18\f \x03(\tR\x06Photos\x12'\n" +
+	"\x05Seems\x18\r \x03(\v2\x11.products.ProductR\x05Seems\x12\x14\n" +
 	"\x05Price\x18\x0e \x01(\x05R\x05Price\x12 \n" +
 	"\vDescription\x18\x0f \x01(\tR\vDescription\"\xf7\x02\n" +
 	"\tProductId\x12\x0e\n" +
@@ -1533,71 +1533,72 @@ var file_products_products_proto_depIdxs = []int32{
 	12, // 7: products.Product.Country:type_name -> products.Country
 	14, // 8: products.Product.Materials:type_name -> products.Material
 	16, // 9: products.Product.Colors:type_name -> products.Color
-	2,  // 10: products.ProductList.products:type_name -> products.Product
-	8,  // 11: products.BrandList.brands:type_name -> products.Brand
-	10, // 12: products.CategoryList.categories:type_name -> products.Category
-	12, // 13: products.CountryList.countries:type_name -> products.Country
-	14, // 14: products.MaterialList.materials:type_name -> products.Material
-	16, // 15: products.ColorList.colors:type_name -> products.Color
-	18, // 16: products.Products.GetDictionaries:input_type -> google.protobuf.Empty
-	1,  // 17: products.Products.SearchProducts:input_type -> products.ProductSearch
-	3,  // 18: products.Products.CreateProduct:input_type -> products.ProductId
-	3,  // 19: products.Products.UpdateProduct:input_type -> products.ProductId
-	6,  // 20: products.Products.DeleteProduct:input_type -> products.Id
-	18, // 21: products.Products.GetAllProducts:input_type -> google.protobuf.Empty
-	5,  // 22: products.Products.FilterProducts:input_type -> products.ProductFilter
-	8,  // 23: products.Products.CreateBrand:input_type -> products.Brand
-	8,  // 24: products.Products.UpdateBrand:input_type -> products.Brand
-	6,  // 25: products.Products.DeleteBrand:input_type -> products.Id
-	18, // 26: products.Products.GetAllBrands:input_type -> google.protobuf.Empty
-	10, // 27: products.Products.CreateCategory:input_type -> products.Category
-	10, // 28: products.Products.UpdateCategory:input_type -> products.Category
-	6,  // 29: products.Products.DeleteCategory:input_type -> products.Id
-	18, // 30: products.Products.GetAllCategories:input_type -> google.protobuf.Empty
-	12, // 31: products.Products.CreateCountry:input_type -> products.Country
-	12, // 32: products.Products.UpdateCountry:input_type -> products.Country
-	6,  // 33: products.Products.DeleteCountry:input_type -> products.Id
-	18, // 34: products.Products.GetAllCountries:input_type -> google.protobuf.Empty
-	14, // 35: products.Products.CreateMaterial:input_type -> products.Material
-	14, // 36: products.Products.UpdateMaterial:input_type -> products.Material
-	6,  // 37: products.Products.DeleteMaterial:input_type -> products.Id
-	18, // 38: products.Products.GetAllMaterials:input_type -> google.protobuf.Empty
-	16, // 39: products.Products.CreateColor:input_type -> products.Color
-	16, // 40: products.Products.UpdateColor:input_type -> products.Color
-	6,  // 41: products.Products.DeleteColor:input_type -> products.Id
-	18, // 42: products.Products.GetAllColors:input_type -> google.protobuf.Empty
-	0,  // 43: products.Products.GetDictionaries:output_type -> products.Dictionaries
-	4,  // 44: products.Products.SearchProducts:output_type -> products.ProductList
-	18, // 45: products.Products.CreateProduct:output_type -> google.protobuf.Empty
-	18, // 46: products.Products.UpdateProduct:output_type -> google.protobuf.Empty
-	18, // 47: products.Products.DeleteProduct:output_type -> google.protobuf.Empty
-	4,  // 48: products.Products.GetAllProducts:output_type -> products.ProductList
-	4,  // 49: products.Products.FilterProducts:output_type -> products.ProductList
-	18, // 50: products.Products.CreateBrand:output_type -> google.protobuf.Empty
-	18, // 51: products.Products.UpdateBrand:output_type -> google.protobuf.Empty
-	18, // 52: products.Products.DeleteBrand:output_type -> google.protobuf.Empty
-	9,  // 53: products.Products.GetAllBrands:output_type -> products.BrandList
-	18, // 54: products.Products.CreateCategory:output_type -> google.protobuf.Empty
-	18, // 55: products.Products.UpdateCategory:output_type -> google.protobuf.Empty
-	18, // 56: products.Products.DeleteCategory:output_type -> google.protobuf.Empty
-	11, // 57: products.Products.GetAllCategories:output_type -> products.CategoryList
-	18, // 58: products.Products.CreateCountry:output_type -> google.protobuf.Empty
-	18, // 59: products.Products.UpdateCountry:output_type -> google.protobuf.Empty
-	18, // 60: products.Products.DeleteCountry:output_type -> google.protobuf.Empty
-	13, // 61: products.Products.GetAllCountries:output_type -> products.CountryList
-	18, // 62: products.Products.CreateMaterial:output_type -> google.protobuf.Empty
-	18, // 63: products.Products.UpdateMaterial:output_type -> google.protobuf.Empty
-	18, // 64: products.Products.DeleteMaterial:output_type -> google.protobuf.Empty
-	15, // 65: products.Products.GetAllMaterials:output_type -> products.MaterialList
-	18, // 66: products.Products.CreateColor:output_type -> google.protobuf.Empty
-	18, // 67: products.Products.UpdateColor:output_type -> google.protobuf.Empty
-	18, // 68: products.Products.DeleteColor:output_type -> google.protobuf.Empty
-	17, // 69: products.Products.GetAllColors:output_type -> products.ColorList
-	43, // [43:70] is the sub-list for method output_type
-	16, // [16:43] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	2,  // 10: products.Product.Seems:type_name -> products.Product
+	2,  // 11: products.ProductList.products:type_name -> products.Product
+	8,  // 12: products.BrandList.brands:type_name -> products.Brand
+	10, // 13: products.CategoryList.categories:type_name -> products.Category
+	12, // 14: products.CountryList.countries:type_name -> products.Country
+	14, // 15: products.MaterialList.materials:type_name -> products.Material
+	16, // 16: products.ColorList.colors:type_name -> products.Color
+	18, // 17: products.Products.GetDictionaries:input_type -> google.protobuf.Empty
+	1,  // 18: products.Products.SearchProducts:input_type -> products.ProductSearch
+	3,  // 19: products.Products.CreateProduct:input_type -> products.ProductId
+	3,  // 20: products.Products.UpdateProduct:input_type -> products.ProductId
+	6,  // 21: products.Products.DeleteProduct:input_type -> products.Id
+	18, // 22: products.Products.GetAllProducts:input_type -> google.protobuf.Empty
+	5,  // 23: products.Products.FilterProducts:input_type -> products.ProductFilter
+	8,  // 24: products.Products.CreateBrand:input_type -> products.Brand
+	8,  // 25: products.Products.UpdateBrand:input_type -> products.Brand
+	6,  // 26: products.Products.DeleteBrand:input_type -> products.Id
+	18, // 27: products.Products.GetAllBrands:input_type -> google.protobuf.Empty
+	10, // 28: products.Products.CreateCategory:input_type -> products.Category
+	10, // 29: products.Products.UpdateCategory:input_type -> products.Category
+	6,  // 30: products.Products.DeleteCategory:input_type -> products.Id
+	18, // 31: products.Products.GetAllCategories:input_type -> google.protobuf.Empty
+	12, // 32: products.Products.CreateCountry:input_type -> products.Country
+	12, // 33: products.Products.UpdateCountry:input_type -> products.Country
+	6,  // 34: products.Products.DeleteCountry:input_type -> products.Id
+	18, // 35: products.Products.GetAllCountries:input_type -> google.protobuf.Empty
+	14, // 36: products.Products.CreateMaterial:input_type -> products.Material
+	14, // 37: products.Products.UpdateMaterial:input_type -> products.Material
+	6,  // 38: products.Products.DeleteMaterial:input_type -> products.Id
+	18, // 39: products.Products.GetAllMaterials:input_type -> google.protobuf.Empty
+	16, // 40: products.Products.CreateColor:input_type -> products.Color
+	16, // 41: products.Products.UpdateColor:input_type -> products.Color
+	6,  // 42: products.Products.DeleteColor:input_type -> products.Id
+	18, // 43: products.Products.GetAllColors:input_type -> google.protobuf.Empty
+	0,  // 44: products.Products.GetDictionaries:output_type -> products.Dictionaries
+	4,  // 45: products.Products.SearchProducts:output_type -> products.ProductList
+	18, // 46: products.Products.CreateProduct:output_type -> google.protobuf.Empty
+	18, // 47: products.Products.UpdateProduct:output_type -> google.protobuf.Empty
+	18, // 48: products.Products.DeleteProduct:output_type -> google.protobuf.Empty
+	4,  // 49: products.Products.GetAllProducts:output_type -> products.ProductList
+	4,  // 50: products.Products.FilterProducts:output_type -> products.ProductList
+	18, // 51: products.Products.CreateBrand:output_type -> google.protobuf.Empty
+	18, // 52: products.Products.UpdateBrand:output_type -> google.protobuf.Empty
+	18, // 53: products.Products.DeleteBrand:output_type -> google.protobuf.Empty
+	9,  // 54: products.Products.GetAllBrands:output_type -> products.BrandList
+	18, // 55: products.Products.CreateCategory:output_type -> google.protobuf.Empty
+	18, // 56: products.Products.UpdateCategory:output_type -> google.protobuf.Empty
+	18, // 57: products.Products.DeleteCategory:output_type -> google.protobuf.Empty
+	11, // 58: products.Products.GetAllCategories:output_type -> products.CategoryList
+	18, // 59: products.Products.CreateCountry:output_type -> google.protobuf.Empty
+	18, // 60: products.Products.UpdateCountry:output_type -> google.protobuf.Empty
+	18, // 61: products.Products.DeleteCountry:output_type -> google.protobuf.Empty
+	13, // 62: products.Products.GetAllCountries:output_type -> products.CountryList
+	18, // 63: products.Products.CreateMaterial:output_type -> google.protobuf.Empty
+	18, // 64: products.Products.UpdateMaterial:output_type -> google.protobuf.Empty
+	18, // 65: products.Products.DeleteMaterial:output_type -> google.protobuf.Empty
+	15, // 66: products.Products.GetAllMaterials:output_type -> products.MaterialList
+	18, // 67: products.Products.CreateColor:output_type -> google.protobuf.Empty
+	18, // 68: products.Products.UpdateColor:output_type -> google.protobuf.Empty
+	18, // 69: products.Products.DeleteColor:output_type -> google.protobuf.Empty
+	17, // 70: products.Products.GetAllColors:output_type -> products.ColorList
+	44, // [44:71] is the sub-list for method output_type
+	17, // [17:44] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_products_products_proto_init() }
