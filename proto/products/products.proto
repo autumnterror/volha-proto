@@ -11,7 +11,7 @@ import "google/protobuf/empty.proto";
 // ─────────────────────────────────────────────
 service Products {
   rpc GetDictionaries(google.protobuf.Empty) returns (Dictionaries);
-  
+
   // Products
   rpc SearchProducts(ProductSearch) returns (ProductList);
   rpc CreateProduct(ProductId) returns (google.protobuf.Empty);
@@ -49,8 +49,18 @@ service Products {
   rpc UpdateColor(Color) returns (google.protobuf.Empty);
   rpc DeleteColor(Id) returns (google.protobuf.Empty);
   rpc GetAllColors(google.protobuf.Empty) returns (ColorList);
+
+  // Product Color Photos
+  rpc CreateProductColorPhotos(ProductColorPhotos) returns (google.protobuf.Empty);
+  rpc UpdateProductColorPhotos(ProductColorPhotos) returns (google.protobuf.Empty);
+  rpc DeleteProductColorPhotos(ProductColorPhotosId) returns (google.protobuf.Empty);
+  rpc GetAllProductColorPhotos(google.protobuf.Empty) returns (ProductColorPhotosList);
+  rpc GetPhotosByProductAndColor(ProductColorPhotosId) returns (PhotoList);
 }
 
+// ─────────────────────────────────────────────
+// Dictionaries
+// ─────────────────────────────────────────────
 message Dictionaries {
   BrandList brands = 1;
   CategoryList categories = 2;
@@ -68,11 +78,9 @@ message Dictionaries {
   int32 max_depth = 13;
 }
 
-
 // ─────────────────────────────────────────────
 // Products
 // ─────────────────────────────────────────────
-
 message ProductSearch {
   string id = 1;
   string title = 2;
@@ -142,7 +150,6 @@ message ProductFilter {
 // ─────────────────────────────────────────────
 // Common
 // ─────────────────────────────────────────────
-
 message Id {
   string Id = 1;
 }
@@ -154,7 +161,6 @@ message Title {
 // ─────────────────────────────────────────────
 // Reference tables
 // ─────────────────────────────────────────────
-
 message Brand {
   string Id = 1;
   string Name = 2;
@@ -201,4 +207,26 @@ message Color {
 
 message ColorList {
   repeated Color colors = 1;
+}
+
+// ─────────────────────────────────────────────
+// Product Color Photos
+// ─────────────────────────────────────────────
+message ProductColorPhotos {
+  string ProductId = 1;
+  string ColorId = 2;
+  repeated string Photos = 3;
+}
+
+message ProductColorPhotosId {
+  string ProductId = 1;
+  string ColorId = 2;
+}
+
+message ProductColorPhotosList {
+  repeated ProductColorPhotos items = 1;
+}
+
+message PhotoList {
+  repeated string photos = 1;
 }

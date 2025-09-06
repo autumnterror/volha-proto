@@ -20,33 +20,38 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Products_GetDictionaries_FullMethodName  = "/products.Products/GetDictionaries"
-	Products_SearchProducts_FullMethodName   = "/products.Products/SearchProducts"
-	Products_CreateProduct_FullMethodName    = "/products.Products/CreateProduct"
-	Products_UpdateProduct_FullMethodName    = "/products.Products/UpdateProduct"
-	Products_DeleteProduct_FullMethodName    = "/products.Products/DeleteProduct"
-	Products_GetAllProducts_FullMethodName   = "/products.Products/GetAllProducts"
-	Products_FilterProducts_FullMethodName   = "/products.Products/FilterProducts"
-	Products_CreateBrand_FullMethodName      = "/products.Products/CreateBrand"
-	Products_UpdateBrand_FullMethodName      = "/products.Products/UpdateBrand"
-	Products_DeleteBrand_FullMethodName      = "/products.Products/DeleteBrand"
-	Products_GetAllBrands_FullMethodName     = "/products.Products/GetAllBrands"
-	Products_CreateCategory_FullMethodName   = "/products.Products/CreateCategory"
-	Products_UpdateCategory_FullMethodName   = "/products.Products/UpdateCategory"
-	Products_DeleteCategory_FullMethodName   = "/products.Products/DeleteCategory"
-	Products_GetAllCategories_FullMethodName = "/products.Products/GetAllCategories"
-	Products_CreateCountry_FullMethodName    = "/products.Products/CreateCountry"
-	Products_UpdateCountry_FullMethodName    = "/products.Products/UpdateCountry"
-	Products_DeleteCountry_FullMethodName    = "/products.Products/DeleteCountry"
-	Products_GetAllCountries_FullMethodName  = "/products.Products/GetAllCountries"
-	Products_CreateMaterial_FullMethodName   = "/products.Products/CreateMaterial"
-	Products_UpdateMaterial_FullMethodName   = "/products.Products/UpdateMaterial"
-	Products_DeleteMaterial_FullMethodName   = "/products.Products/DeleteMaterial"
-	Products_GetAllMaterials_FullMethodName  = "/products.Products/GetAllMaterials"
-	Products_CreateColor_FullMethodName      = "/products.Products/CreateColor"
-	Products_UpdateColor_FullMethodName      = "/products.Products/UpdateColor"
-	Products_DeleteColor_FullMethodName      = "/products.Products/DeleteColor"
-	Products_GetAllColors_FullMethodName     = "/products.Products/GetAllColors"
+	Products_GetDictionaries_FullMethodName            = "/products.Products/GetDictionaries"
+	Products_SearchProducts_FullMethodName             = "/products.Products/SearchProducts"
+	Products_CreateProduct_FullMethodName              = "/products.Products/CreateProduct"
+	Products_UpdateProduct_FullMethodName              = "/products.Products/UpdateProduct"
+	Products_DeleteProduct_FullMethodName              = "/products.Products/DeleteProduct"
+	Products_GetAllProducts_FullMethodName             = "/products.Products/GetAllProducts"
+	Products_FilterProducts_FullMethodName             = "/products.Products/FilterProducts"
+	Products_CreateBrand_FullMethodName                = "/products.Products/CreateBrand"
+	Products_UpdateBrand_FullMethodName                = "/products.Products/UpdateBrand"
+	Products_DeleteBrand_FullMethodName                = "/products.Products/DeleteBrand"
+	Products_GetAllBrands_FullMethodName               = "/products.Products/GetAllBrands"
+	Products_CreateCategory_FullMethodName             = "/products.Products/CreateCategory"
+	Products_UpdateCategory_FullMethodName             = "/products.Products/UpdateCategory"
+	Products_DeleteCategory_FullMethodName             = "/products.Products/DeleteCategory"
+	Products_GetAllCategories_FullMethodName           = "/products.Products/GetAllCategories"
+	Products_CreateCountry_FullMethodName              = "/products.Products/CreateCountry"
+	Products_UpdateCountry_FullMethodName              = "/products.Products/UpdateCountry"
+	Products_DeleteCountry_FullMethodName              = "/products.Products/DeleteCountry"
+	Products_GetAllCountries_FullMethodName            = "/products.Products/GetAllCountries"
+	Products_CreateMaterial_FullMethodName             = "/products.Products/CreateMaterial"
+	Products_UpdateMaterial_FullMethodName             = "/products.Products/UpdateMaterial"
+	Products_DeleteMaterial_FullMethodName             = "/products.Products/DeleteMaterial"
+	Products_GetAllMaterials_FullMethodName            = "/products.Products/GetAllMaterials"
+	Products_CreateColor_FullMethodName                = "/products.Products/CreateColor"
+	Products_UpdateColor_FullMethodName                = "/products.Products/UpdateColor"
+	Products_DeleteColor_FullMethodName                = "/products.Products/DeleteColor"
+	Products_GetAllColors_FullMethodName               = "/products.Products/GetAllColors"
+	Products_CreateProductColorPhotos_FullMethodName   = "/products.Products/CreateProductColorPhotos"
+	Products_UpdateProductColorPhotos_FullMethodName   = "/products.Products/UpdateProductColorPhotos"
+	Products_DeleteProductColorPhotos_FullMethodName   = "/products.Products/DeleteProductColorPhotos"
+	Products_GetAllProductColorPhotos_FullMethodName   = "/products.Products/GetAllProductColorPhotos"
+	Products_GetPhotosByProductAndColor_FullMethodName = "/products.Products/GetPhotosByProductAndColor"
 )
 
 // ProductsClient is the client API for Products service.
@@ -90,6 +95,12 @@ type ProductsClient interface {
 	UpdateColor(ctx context.Context, in *Color, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteColor(ctx context.Context, in *Id, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetAllColors(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ColorList, error)
+	// Product Color Photos
+	CreateProductColorPhotos(ctx context.Context, in *ProductColorPhotos, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UpdateProductColorPhotos(ctx context.Context, in *ProductColorPhotos, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteProductColorPhotos(ctx context.Context, in *ProductColorPhotosId, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetAllProductColorPhotos(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ProductColorPhotosList, error)
+	GetPhotosByProductAndColor(ctx context.Context, in *ProductColorPhotosId, opts ...grpc.CallOption) (*PhotoList, error)
 }
 
 type productsClient struct {
@@ -370,6 +381,56 @@ func (c *productsClient) GetAllColors(ctx context.Context, in *emptypb.Empty, op
 	return out, nil
 }
 
+func (c *productsClient) CreateProductColorPhotos(ctx context.Context, in *ProductColorPhotos, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Products_CreateProductColorPhotos_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) UpdateProductColorPhotos(ctx context.Context, in *ProductColorPhotos, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Products_UpdateProductColorPhotos_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) DeleteProductColorPhotos(ctx context.Context, in *ProductColorPhotosId, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Products_DeleteProductColorPhotos_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) GetAllProductColorPhotos(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ProductColorPhotosList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProductColorPhotosList)
+	err := c.cc.Invoke(ctx, Products_GetAllProductColorPhotos_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) GetPhotosByProductAndColor(ctx context.Context, in *ProductColorPhotosId, opts ...grpc.CallOption) (*PhotoList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PhotoList)
+	err := c.cc.Invoke(ctx, Products_GetPhotosByProductAndColor_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProductsServer is the server API for Products service.
 // All implementations must embed UnimplementedProductsServer
 // for forward compatibility.
@@ -411,6 +472,12 @@ type ProductsServer interface {
 	UpdateColor(context.Context, *Color) (*emptypb.Empty, error)
 	DeleteColor(context.Context, *Id) (*emptypb.Empty, error)
 	GetAllColors(context.Context, *emptypb.Empty) (*ColorList, error)
+	// Product Color Photos
+	CreateProductColorPhotos(context.Context, *ProductColorPhotos) (*emptypb.Empty, error)
+	UpdateProductColorPhotos(context.Context, *ProductColorPhotos) (*emptypb.Empty, error)
+	DeleteProductColorPhotos(context.Context, *ProductColorPhotosId) (*emptypb.Empty, error)
+	GetAllProductColorPhotos(context.Context, *emptypb.Empty) (*ProductColorPhotosList, error)
+	GetPhotosByProductAndColor(context.Context, *ProductColorPhotosId) (*PhotoList, error)
 	mustEmbedUnimplementedProductsServer()
 }
 
@@ -501,6 +568,21 @@ func (UnimplementedProductsServer) DeleteColor(context.Context, *Id) (*emptypb.E
 }
 func (UnimplementedProductsServer) GetAllColors(context.Context, *emptypb.Empty) (*ColorList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllColors not implemented")
+}
+func (UnimplementedProductsServer) CreateProductColorPhotos(context.Context, *ProductColorPhotos) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateProductColorPhotos not implemented")
+}
+func (UnimplementedProductsServer) UpdateProductColorPhotos(context.Context, *ProductColorPhotos) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateProductColorPhotos not implemented")
+}
+func (UnimplementedProductsServer) DeleteProductColorPhotos(context.Context, *ProductColorPhotosId) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteProductColorPhotos not implemented")
+}
+func (UnimplementedProductsServer) GetAllProductColorPhotos(context.Context, *emptypb.Empty) (*ProductColorPhotosList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllProductColorPhotos not implemented")
+}
+func (UnimplementedProductsServer) GetPhotosByProductAndColor(context.Context, *ProductColorPhotosId) (*PhotoList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPhotosByProductAndColor not implemented")
 }
 func (UnimplementedProductsServer) mustEmbedUnimplementedProductsServer() {}
 func (UnimplementedProductsServer) testEmbeddedByValue()                  {}
@@ -1009,6 +1091,96 @@ func _Products_GetAllColors_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Products_CreateProductColorPhotos_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductColorPhotos)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).CreateProductColorPhotos(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_CreateProductColorPhotos_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).CreateProductColorPhotos(ctx, req.(*ProductColorPhotos))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_UpdateProductColorPhotos_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductColorPhotos)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).UpdateProductColorPhotos(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_UpdateProductColorPhotos_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).UpdateProductColorPhotos(ctx, req.(*ProductColorPhotos))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_DeleteProductColorPhotos_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductColorPhotosId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).DeleteProductColorPhotos(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_DeleteProductColorPhotos_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).DeleteProductColorPhotos(ctx, req.(*ProductColorPhotosId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_GetAllProductColorPhotos_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).GetAllProductColorPhotos(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_GetAllProductColorPhotos_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).GetAllProductColorPhotos(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_GetPhotosByProductAndColor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductColorPhotosId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).GetPhotosByProductAndColor(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_GetPhotosByProductAndColor_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).GetPhotosByProductAndColor(ctx, req.(*ProductColorPhotosId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Products_ServiceDesc is the grpc.ServiceDesc for Products service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1123,6 +1295,26 @@ var Products_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetAllColors",
 			Handler:    _Products_GetAllColors_Handler,
+		},
+		{
+			MethodName: "CreateProductColorPhotos",
+			Handler:    _Products_CreateProductColorPhotos_Handler,
+		},
+		{
+			MethodName: "UpdateProductColorPhotos",
+			Handler:    _Products_UpdateProductColorPhotos_Handler,
+		},
+		{
+			MethodName: "DeleteProductColorPhotos",
+			Handler:    _Products_DeleteProductColorPhotos_Handler,
+		},
+		{
+			MethodName: "GetAllProductColorPhotos",
+			Handler:    _Products_GetAllProductColorPhotos_Handler,
+		},
+		{
+			MethodName: "GetPhotosByProductAndColor",
+			Handler:    _Products_GetPhotosByProductAndColor_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
