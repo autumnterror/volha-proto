@@ -18,6 +18,7 @@ service Products {
   rpc UpdateProduct(ProductId) returns (google.protobuf.Empty);
   rpc DeleteProduct(Id) returns (google.protobuf.Empty);
   rpc GetAllProducts(google.protobuf.Empty) returns (ProductList);
+  rpc GetProduct(Id) returns (Product);
   rpc FilterProducts(ProductFilter) returns (ProductList);
 
   // Brands

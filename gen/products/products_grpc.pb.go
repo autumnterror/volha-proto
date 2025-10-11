@@ -26,6 +26,7 @@ const (
 	Products_UpdateProduct_FullMethodName              = "/products.Products/UpdateProduct"
 	Products_DeleteProduct_FullMethodName              = "/products.Products/DeleteProduct"
 	Products_GetAllProducts_FullMethodName             = "/products.Products/GetAllProducts"
+	Products_GetProduct_FullMethodName                 = "/products.Products/GetProduct"
 	Products_FilterProducts_FullMethodName             = "/products.Products/FilterProducts"
 	Products_CreateBrand_FullMethodName                = "/products.Products/CreateBrand"
 	Products_UpdateBrand_FullMethodName                = "/products.Products/UpdateBrand"
@@ -69,6 +70,7 @@ type ProductsClient interface {
 	UpdateProduct(ctx context.Context, in *ProductId, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteProduct(ctx context.Context, in *Id, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetAllProducts(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ProductList, error)
+	GetProduct(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Product, error)
 	FilterProducts(ctx context.Context, in *ProductFilter, opts ...grpc.CallOption) (*ProductList, error)
 	// Brands
 	CreateBrand(ctx context.Context, in *Brand, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -165,6 +167,16 @@ func (c *productsClient) GetAllProducts(ctx context.Context, in *emptypb.Empty, 
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ProductList)
 	err := c.cc.Invoke(ctx, Products_GetAllProducts_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) GetProduct(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Product, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Product)
+	err := c.cc.Invoke(ctx, Products_GetProduct_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -446,6 +458,7 @@ type ProductsServer interface {
 	UpdateProduct(context.Context, *ProductId) (*emptypb.Empty, error)
 	DeleteProduct(context.Context, *Id) (*emptypb.Empty, error)
 	GetAllProducts(context.Context, *emptypb.Empty) (*ProductList, error)
+	GetProduct(context.Context, *Id) (*Product, error)
 	FilterProducts(context.Context, *ProductFilter) (*ProductList, error)
 	// Brands
 	CreateBrand(context.Context, *Brand) (*emptypb.Empty, error)
@@ -505,6 +518,9 @@ func (UnimplementedProductsServer) DeleteProduct(context.Context, *Id) (*emptypb
 }
 func (UnimplementedProductsServer) GetAllProducts(context.Context, *emptypb.Empty) (*ProductList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllProducts not implemented")
+}
+func (UnimplementedProductsServer) GetProduct(context.Context, *Id) (*Product, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProduct not implemented")
 }
 func (UnimplementedProductsServer) FilterProducts(context.Context, *ProductFilter) (*ProductList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FilterProducts not implemented")
@@ -709,6 +725,24 @@ func _Products_GetAllProducts_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProductsServer).GetAllProducts(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_GetProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Id)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).GetProduct(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_GetProduct_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).GetProduct(ctx, req.(*Id))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1211,6 +1245,10 @@ var Products_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetAllProducts",
 			Handler:    _Products_GetAllProducts_Handler,
+		},
+		{
+			MethodName: "GetProduct",
+			Handler:    _Products_GetProduct_Handler,
 		},
 		{
 			MethodName: "FilterProducts",
