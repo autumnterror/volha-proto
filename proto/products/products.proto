@@ -174,6 +174,7 @@ message Category {
   string Id = 1;
   string Title = 2;
   string Uri = 3;
+  string Img = 4;
 }
 
 message CategoryList {

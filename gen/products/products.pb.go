@@ -951,6 +951,7 @@ type Category struct {
 	Id            string                 `protobuf:"bytes,1,opt,name=Id,proto3" json:"Id,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=Title,proto3" json:"Title,omitempty"`
 	Uri           string                 `protobuf:"bytes,3,opt,name=Uri,proto3" json:"Uri,omitempty"`
+	Img           string                 `protobuf:"bytes,4,opt,name=Img,proto3" json:"Img,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1002,6 +1003,13 @@ func (x *Category) GetTitle() string {
 func (x *Category) GetUri() string {
 	if x != nil {
 		return x.Uri
+	}
+	return ""
+}
+
+func (x *Category) GetImg() string {
+	if x != nil {
+		return x.Img
 	}
 	return ""
 }
@@ -1648,11 +1656,12 @@ const file_products_products_proto_rawDesc = "" +
 	"\x02Id\x18\x01 \x01(\tR\x02Id\x12\x12\n" +
 	"\x04Name\x18\x02 \x01(\tR\x04Name\"4\n" +
 	"\tBrandList\x12'\n" +
-	"\x06brands\x18\x01 \x03(\v2\x0f.products.BrandR\x06brands\"B\n" +
+	"\x06brands\x18\x01 \x03(\v2\x0f.products.BrandR\x06brands\"T\n" +
 	"\bCategory\x12\x0e\n" +
 	"\x02Id\x18\x01 \x01(\tR\x02Id\x12\x14\n" +
 	"\x05Title\x18\x02 \x01(\tR\x05Title\x12\x10\n" +
-	"\x03Uri\x18\x03 \x01(\tR\x03Uri\"B\n" +
+	"\x03Uri\x18\x03 \x01(\tR\x03Uri\x12\x10\n" +
+	"\x03Img\x18\x04 \x01(\tR\x03Img\"B\n" +
 	"\fCategoryList\x122\n" +
 	"\n" +
 	"categories\x18\x01 \x03(\v2\x12.products.CategoryR\n" +
