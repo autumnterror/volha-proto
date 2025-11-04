@@ -11,6 +11,7 @@ import "google/protobuf/empty.proto";
 // ─────────────────────────────────────────────
 service Products {
   rpc GetDictionaries(google.protobuf.Empty) returns (Dictionaries);
+  rpc GetDictionariesByCategory(Id) returns (DictionariesByCategory);
 
   // Products
   rpc SearchProducts(ProductSearch) returns (ProductList);
@@ -77,6 +78,22 @@ message Dictionaries {
   int32 max_height = 11;
   int32 min_depth = 12;
   int32 max_depth = 13;
+}
+
+message DictionariesByCategory {
+  BrandList brands = 1;
+  CountryList countries = 2;
+  MaterialList materials = 3;
+  ColorList colors = 4;
+
+  int32 min_price = 5;
+  int32 max_price = 6;
+  int32 min_width = 7;
+  int32 max_width = 8;
+  int32 min_height = 9;
+  int32 max_height = 10;
+  int32 min_depth = 11;
+  int32 max_depth = 12;
 }
 
 // ─────────────────────────────────────────────

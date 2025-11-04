@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	Products_GetDictionaries_FullMethodName            = "/products.Products/GetDictionaries"
+	Products_GetDictionariesByCategory_FullMethodName  = "/products.Products/GetDictionariesByCategory"
 	Products_SearchProducts_FullMethodName             = "/products.Products/SearchProducts"
 	Products_CreateProduct_FullMethodName              = "/products.Products/CreateProduct"
 	Products_UpdateProduct_FullMethodName              = "/products.Products/UpdateProduct"
@@ -64,6 +65,7 @@ const (
 // ─────────────────────────────────────────────
 type ProductsClient interface {
 	GetDictionaries(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Dictionaries, error)
+	GetDictionariesByCategory(ctx context.Context, in *Id, opts ...grpc.CallOption) (*DictionariesByCategory, error)
 	// Products
 	SearchProducts(ctx context.Context, in *ProductSearch, opts ...grpc.CallOption) (*ProductList, error)
 	CreateProduct(ctx context.Context, in *ProductId, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -117,6 +119,16 @@ func (c *productsClient) GetDictionaries(ctx context.Context, in *emptypb.Empty,
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Dictionaries)
 	err := c.cc.Invoke(ctx, Products_GetDictionaries_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsClient) GetDictionariesByCategory(ctx context.Context, in *Id, opts ...grpc.CallOption) (*DictionariesByCategory, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DictionariesByCategory)
+	err := c.cc.Invoke(ctx, Products_GetDictionariesByCategory_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -452,6 +464,7 @@ func (c *productsClient) GetPhotosByProductAndColor(ctx context.Context, in *Pro
 // ─────────────────────────────────────────────
 type ProductsServer interface {
 	GetDictionaries(context.Context, *emptypb.Empty) (*Dictionaries, error)
+	GetDictionariesByCategory(context.Context, *Id) (*DictionariesByCategory, error)
 	// Products
 	SearchProducts(context.Context, *ProductSearch) (*ProductList, error)
 	CreateProduct(context.Context, *ProductId) (*emptypb.Empty, error)
@@ -503,6 +516,9 @@ type UnimplementedProductsServer struct{}
 
 func (UnimplementedProductsServer) GetDictionaries(context.Context, *emptypb.Empty) (*Dictionaries, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDictionaries not implemented")
+}
+func (UnimplementedProductsServer) GetDictionariesByCategory(context.Context, *Id) (*DictionariesByCategory, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDictionariesByCategory not implemented")
 }
 func (UnimplementedProductsServer) SearchProducts(context.Context, *ProductSearch) (*ProductList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchProducts not implemented")
@@ -635,6 +651,24 @@ func _Products_GetDictionaries_Handler(srv interface{}, ctx context.Context, dec
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProductsServer).GetDictionaries(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Products_GetDictionariesByCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Id)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsServer).GetDictionariesByCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Products_GetDictionariesByCategory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsServer).GetDictionariesByCategory(ctx, req.(*Id))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1225,6 +1259,10 @@ var Products_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDictionaries",
 			Handler:    _Products_GetDictionaries_Handler,
+		},
+		{
+			MethodName: "GetDictionariesByCategory",
+			Handler:    _Products_GetDictionariesByCategory_Handler,
 		},
 		{
 			MethodName: "SearchProducts",
