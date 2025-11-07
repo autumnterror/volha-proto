@@ -1841,12 +1841,12 @@ const file_products_products_proto_rawDesc = "" +
 	"\x16ProductColorPhotosList\x122\n" +
 	"\x05items\x18\x01 \x03(\v2\x1c.products.ProductColorPhotosR\x05items\"#\n" +
 	"\tPhotoList\x12\x16\n" +
-	"\x06photos\x18\x01 \x03(\tR\x06photos2\xfc\x10\n" +
+	"\x06photos\x18\x01 \x03(\tR\x06photos2\x86\x11\n" +
 	"\bProducts\x12A\n" +
 	"\x0fGetDictionaries\x12\x16.google.protobuf.Empty\x1a\x16.products.Dictionaries\x12K\n" +
 	"\x19GetDictionariesByCategory\x12\f.products.Id\x1a .products.DictionariesByCategory\x12@\n" +
-	"\x0eSearchProducts\x12\x17.products.ProductSearch\x1a\x15.products.ProductList\x122\n" +
-	"\rCreateProduct\x12\x13.products.ProductId\x1a\f.products.Id\x12<\n" +
+	"\x0eSearchProducts\x12\x17.products.ProductSearch\x1a\x15.products.ProductList\x12<\n" +
+	"\rCreateProduct\x12\x13.products.ProductId\x1a\x16.google.protobuf.Empty\x12<\n" +
 	"\rUpdateProduct\x12\x13.products.ProductId\x1a\x16.google.protobuf.Empty\x125\n" +
 	"\rDeleteProduct\x12\f.products.Id\x1a\x16.google.protobuf.Empty\x12?\n" +
 	"\x0eGetAllProducts\x12\x16.google.protobuf.Empty\x1a\x15.products.ProductList\x12-\n" +
@@ -1978,7 +1978,7 @@ var file_products_products_proto_depIdxs = []int32{
 	0,  // 56: products.Products.GetDictionaries:output_type -> products.Dictionaries
 	1,  // 57: products.Products.GetDictionariesByCategory:output_type -> products.DictionariesByCategory
 	5,  // 58: products.Products.SearchProducts:output_type -> products.ProductList
-	7,  // 59: products.Products.CreateProduct:output_type -> products.Id
+	23, // 59: products.Products.CreateProduct:output_type -> google.protobuf.Empty
 	23, // 60: products.Products.UpdateProduct:output_type -> google.protobuf.Empty
 	23, // 61: products.Products.DeleteProduct:output_type -> google.protobuf.Empty
 	5,  // 62: products.Products.GetAllProducts:output_type -> products.ProductList
