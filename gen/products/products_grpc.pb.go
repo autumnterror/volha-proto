@@ -68,7 +68,7 @@ type ProductsClient interface {
 	GetDictionariesByCategory(ctx context.Context, in *Id, opts ...grpc.CallOption) (*DictionariesByCategory, error)
 	// Products
 	SearchProducts(ctx context.Context, in *ProductSearch, opts ...grpc.CallOption) (*ProductList, error)
-	CreateProduct(ctx context.Context, in *ProductId, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateProduct(ctx context.Context, in *ProductId, opts ...grpc.CallOption) (*Id, error)
 	UpdateProduct(ctx context.Context, in *ProductId, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteProduct(ctx context.Context, in *Id, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetAllProducts(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ProductList, error)
@@ -145,9 +145,9 @@ func (c *productsClient) SearchProducts(ctx context.Context, in *ProductSearch, 
 	return out, nil
 }
 
-func (c *productsClient) CreateProduct(ctx context.Context, in *ProductId, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *productsClient) CreateProduct(ctx context.Context, in *ProductId, opts ...grpc.CallOption) (*Id, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
+	out := new(Id)
 	err := c.cc.Invoke(ctx, Products_CreateProduct_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -467,7 +467,7 @@ type ProductsServer interface {
 	GetDictionariesByCategory(context.Context, *Id) (*DictionariesByCategory, error)
 	// Products
 	SearchProducts(context.Context, *ProductSearch) (*ProductList, error)
-	CreateProduct(context.Context, *ProductId) (*emptypb.Empty, error)
+	CreateProduct(context.Context, *ProductId) (*Id, error)
 	UpdateProduct(context.Context, *ProductId) (*emptypb.Empty, error)
 	DeleteProduct(context.Context, *Id) (*emptypb.Empty, error)
 	GetAllProducts(context.Context, *emptypb.Empty) (*ProductList, error)
@@ -523,7 +523,7 @@ func (UnimplementedProductsServer) GetDictionariesByCategory(context.Context, *I
 func (UnimplementedProductsServer) SearchProducts(context.Context, *ProductSearch) (*ProductList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchProducts not implemented")
 }
-func (UnimplementedProductsServer) CreateProduct(context.Context, *ProductId) (*emptypb.Empty, error) {
+func (UnimplementedProductsServer) CreateProduct(context.Context, *ProductId) (*Id, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateProduct not implemented")
 }
 func (UnimplementedProductsServer) UpdateProduct(context.Context, *ProductId) (*emptypb.Empty, error) {

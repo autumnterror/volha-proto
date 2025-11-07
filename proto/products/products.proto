@@ -15,7 +15,7 @@ service Products {
 
   // Products
   rpc SearchProducts(ProductSearch) returns (ProductList);
-  rpc CreateProduct(ProductId) returns (google.protobuf.Empty);
+  rpc CreateProduct(ProductId) returns (Id);
   rpc UpdateProduct(ProductId) returns (google.protobuf.Empty);
   rpc DeleteProduct(Id) returns (google.protobuf.Empty);
   rpc GetAllProducts(google.protobuf.Empty) returns (ProductList);
