@@ -18,7 +18,7 @@ service Products {
   rpc CreateProduct(ProductId) returns (google.protobuf.Empty);
   rpc UpdateProduct(ProductId) returns (google.protobuf.Empty);
   rpc DeleteProduct(Id) returns (google.protobuf.Empty);
-  rpc GetAllProducts(google.protobuf.Empty) returns (ProductList);
+  rpc GetAllProducts(GetAllProductsPagination) returns (ProductList);
   rpc GetProduct(Id) returns (Product);
   rpc FilterProducts(ProductFilter) returns (ProductList);
 
@@ -103,6 +103,10 @@ message ProductSearch {
   string id = 1;
   string title = 2;
   string article = 3;
+}
+message GetAllProductsPagination {
+  int32 start = 1;
+  int32 end = 2;
 }
 
 message Product {
